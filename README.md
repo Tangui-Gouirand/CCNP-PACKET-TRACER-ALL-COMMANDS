@@ -1,10 +1,5 @@
 # CCNP-PACKET-TRACER-COMMANDES-UTILES FR
-⚠️C'EST PAS FINI, IL MANQUE :
-SPANNING TREE
-NAT-PAT
-ACL
-ETHERCHANNEL
-ET TOUT LES TRUCS EN LIEN AVEC IPV6
+⚠️C'EST PAS FINI, IL MANQUE : SPANNING TREE, NAT-PAT, ACL, ETHERCHANNEL ET TOUT LES TRUCS EN LIEN AVEC IPV6
 
 
 Ce document rassemble les commandes les plus utiles pour la préparation du CCNP sur Packet Tracer. Il est organisé par thèmes pour une consultation facile.
