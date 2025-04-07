@@ -43,8 +43,8 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
         * 2.3.2. [Définition des Voisins BGP](#définition-des-voisins-bgp)
         * 2.3.3. [Annonce d'un Réseau à Travers BGP](#annonce-dun-réseau-à-travers-bgp)
         * 2.3.4. [Redistribution de la Route par Défaut BGP](#redistribution-de-la-route-par-défaut-bgp)
-    * 2.4. [Routage Inter-VLAN](#routage-inter-vlan)
-    * 2.5. [HSRP](#hsrp)
+    * 2.4. [HSRP](#hsrp)
+    * 2.5. [Tunnel GRE](#tunnel-gre)
 3.  [VLAN](#vlan)
     * 3.1. [Création de VLANs](#création-de-vlans)
     * 3.2. [Définir interface ip du VLAN](#définir-interface-ip-du-vlan)
@@ -53,6 +53,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
         * 3.4.1. [Protocole 802.1Q pour étiqueter les trames avec l'ID du VLAN (TRUNK)](#protocole-8021q-pour-étiqueter-les-trames-avec-lid-du-vlan-trunk)
         * 3.4.2. [VLAN natif](#vlan-natif)
         * 3.4.3. [VLAN VOIX](#vlan-voix)
+    * 3.5. [Routage Inter-VLAN](#routage-inter-vlan)
 4.  [Services Réseau](#services-réseau)
     * 4.1. [Protocole NTP (Network Time Protocol)](#protocole-ntp-network-time-protocol)
         * 4.1.1. [Définir un serveur NTP](#définir-un-serveur-ntp)
@@ -481,27 +482,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     R1(config-router)#default-information originate
     ```
 
-### 2.4 Routage Inter-VLAN
-
-* **Crée une sous-interface**
-
-    ```cisco
-    R1(config)#interface G0/1.10
-    R1(config-subif)#description Default Gateway for VLAN 10
-    R1(config-subif)#encapsulation dot1Q 10
-    R1(config-subif)#ip add 192.168.10.1 255.255.255.0
-    ```
-
-* **Démo 2**
-
-    ```cisco
-    R1(config)#interface G0/1.20
-    R1(config-subif)#description Default Gateway for VLAN 20
-    R1(config-subif)#encapsulation dot1Q 20
-    R1(config-subif)#ip addr 192.168.20.1 255.255.255.0
-    ```
-
-### 2.5 HSRP
+### 2.4 HSRP
 
 * **Interface <numéro_vlan> ou <serial/gigabit>**
 
@@ -536,6 +517,46 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     ```cisco
     Router# show standby brief
     ```
+
+### 2.5 Tunnel GRE
+
+* ```cisco
+    Router(config)# interface tunnel {numéro}
+    Router(config-if)#ip addresse {adresse_ip} {masque}
+    ```
+
+    Crée une interface de tunnel GRE.
+    Attribuer une adresse IP à l'interface de tunnel.
+
+* ```cisco
+    Router(config-if)# tunnel source {adresse_ip_source}
+    ```
+
+    Définir l'adresse IP source du tunnel.
+
+    ```cisco
+    Router(config-if)# tunnel destination {adresse_ip_destination}
+    ```
+
+    Définir l'adresse IP de destination du tunnel.
+
+    ```cisco
+    Router(config-if)# tunnel mode gre ip
+    ```
+
+    Indique que le type de tunnel est GRE.
+
+* ```cisco
+    Router(config-if)# ip mtu {valeur}
+    ```
+
+    Ajustement de la MTU (Maximum Transmission Unit) du tunnel, pour éviter la fragmentation.
+
+* ```cisco
+    Router# show interfaces tunnel {numéro}
+    ```
+
+    Affiche les informations de l'interface de tunnel.
 
 ## VLAN
 
@@ -612,6 +633,26 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
 
     ```cisco
     S1#show vlan
+    ```
+
+### 3.8 Routage Inter-VLAN
+
+* **Crée une sous-interface**
+
+    ```cisco
+    R1(config)#interface G0/1.10
+    R1(config-subif)#description Default Gateway for VLAN 10
+    R1(config-subif)#encapsulation dot1Q 10
+    R1(config-subif)#ip add 192.168.10.1 255.255.255.0
+    ```
+
+* **Démo 2**
+
+    ```cisco
+    R1(config)#interface G0/1.20
+    R1(config-subif)#description Default Gateway for VLAN 20
+    R1(config-subif)#encapsulation dot1Q 20
+    R1(config-subif)#ip addr 192.168.20.1 255.255.255.0
     ```
 
 ## Services Réseau
