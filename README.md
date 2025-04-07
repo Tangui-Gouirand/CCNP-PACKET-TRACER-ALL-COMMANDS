@@ -40,17 +40,19 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
         * 2.2.8. [Vérification de la Table de Routage EIGRP](#vérification-de-la-table-de-routage-eigrp)
     * 2.3. [BGP](#bgp)
         * 2.3.1 [Activation de BGP](#activation-de-bgp)
-        * 2.3.2 [Définition des Voisins BGP](#définition-des-voisins-bgp)
-        * 2.3.3 [Annonce d'un Réseau à Travers BGP](#annonce-dun-réseau-à-travers-bgp)
-        * 2.3.4 [Redistribution de la Route par Défaut BGP](#redistribution-de-la-route-par-défaut-bgp)
+        * 2.3.2. [Définition des Voisins BGP](#définition-des-voisins-bgp)
+        * 2.3.3. [Annonce d'un Réseau à Travers BGP](#annonce-dun-réseau-à-travers-bgp)
+        * 2.3.4. [Redistribution de la Route par Défaut BGP](#redistribution-de-la-route-par-défaut-bgp)
+    * 2.4. [Routage Inter-VLAN](#routage-inter-vlan)
+    * 2.5. [HSRP](#hsrp)
 3.  [VLAN](#vlan)
     * 3.1. [Création de VLANs](#création-de-vlans)
     * 3.2. [Définir interface ip du VLAN](#définir-interface-ip-du-vlan)
     * 3.3. [Configuration des ports VLAN access (1vlan par lien)](#configuration-des-ports-vlan-access-1vlan-par-lien)
     * 3.4. [Configuration des ports VLAN TRUNK](#configuration-des-ports-vlan-trunk)
-    * 3.5. [Protocole 802.1Q pour étiqueter les trames avec l'ID du VLAN (TRUNK)](#protocole-8021q-pour-étiqueter-les-trames-avec-lid-du-vlan-trunk)
-    * 3.6. [VLAN natif](#vlan-natif)
-    * 3.7. [VLAN VOIX](#vlan-voix)
+        * 3.4.1. [Protocole 802.1Q pour étiqueter les trames avec l'ID du VLAN (TRUNK)](#protocole-8021q-pour-étiqueter-les-trames-avec-lid-du-vlan-trunk)
+        * 3.4.2. [VLAN natif](#vlan-natif)
+        * 3.4.3. [VLAN VOIX](#vlan-voix)
 4.  [Services Réseau](#services-réseau)
     * 4.1. [Protocole NTP (Network Time Protocol)](#protocole-ntp-network-time-protocol)
         * 4.1.1. [Définir un serveur NTP](#définir-un-serveur-ntp)
@@ -339,6 +341,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     ```cisco
     R1(config-router)# passive-interface GigabitEthernet0/0
     ```
+
     * **Explication**: Désactive l'envoi de paquets OSPF sur une interface
 
 #### 2.1.6 Authentification MD5 sur une Interface
@@ -417,6 +420,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     ```cisco
     R1(config-router)# passive-interface GigabitEthernet0/0
     ```
+
     * **Explication**: Empêche l'envoi de mises à jour EIGRP sur une interface.
 
 #### 2.2.6 Vérification des Voisins EIGRP
@@ -477,6 +481,62 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     R1(config-router)#default-information originate
     ```
 
+### 2.4 Routage Inter-VLAN
+
+* **Crée une sous-interface**
+
+    ```cisco
+    R1(config)#interface G0/1.10
+    R1(config-subif)#description Default Gateway for VLAN 10
+    R1(config-subif)#encapsulation dot1Q 10
+    R1(config-subif)#ip add 192.168.10.1 255.255.255.0
+    ```
+
+* **Démo 2**
+
+    ```cisco
+    R1(config)#interface G0/1.20
+    R1(config-subif)#description Default Gateway for VLAN 20
+    R1(config-subif)#encapsulation dot1Q 20
+    R1(config-subif)#ip addr 192.168.20.1 255.255.255.0
+    ```
+
+### 2.5 HSRP
+
+* **Interface <numéro_vlan> ou <serial/gigabit>**
+
+    ```cisco
+    Router(config-if)# standby version {1|2}
+    Router(config-if)# standby {groupe} ip {adresse_ip_virtuelle}
+    Router(config-if)# standby {groupe} priority {priorité}
+    ```
+
+    par défaut : 100, mettre 150 pour définir en primaire – ne pas mettre la commande pour secondaire
+
+    ```cisco
+    Router(config-if)# standby {groupe} preempt
+    ```
+
+    Permet au routeur ayant la priorité la plus élevée de devenir actif
+
+    ```cisco
+    Router(config-if)# standby {groupe} name {nom}
+    ```
+
+    configuration d'un nom de groupe
+
+* Affiche l'état des groupes HSRP.
+
+    ```cisco
+    Router# show standby
+    ```
+
+* Affiche l'état résumé des groupes HSRP.
+
+    ```cisco
+    Router# show standby brief
+    ```
+
 ## VLAN
 
 ### 3.1 Création de VLANs
@@ -487,7 +547,9 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     S1(config)#vlan <numéro_vlan>
     S1(config-vlan)#name <nom_vlan>
     ```
+
 #### 3.2 Définir interface ip du VLAN
+
 * **Commandes :**
 
     ```cisco
@@ -495,37 +557,61 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     S1(config-if)#ip address 192.168.10.254 255.255.255.0
     S1(config-if)#ip default-gateway 192.168.10.1
     ```
+
 #### 3.3 Configuration des ports VLAN access (1vlan par lien)
+
 * **Commandes :**
 
     ```cisco
     S1(config-if)#switchport mode access
     S1(config-if)#switchport access vlan <numéro_vlan>
     ```
+
 #### 3.4 Configuration des ports VLAN TRUNK
+
 * **Commande :**
-Configure un port en mode trunk (pour les liaisons inter-switch ou routeur)
+    Configure un port en mode trunk (pour les liaisons inter-switch ou routeur)
+
     ```cisco
     S1(config-if)#switchport mode trunk
     S1(config-if)#switchport trunk allowed vlan <liste_vlans>
     ```
+
 #### 3.5 Protocole 802.1Q pour étiqueter les trames avec l'ID du VLAN (TRUNK)
+
 * **Commande :**
 
     ```cisco
     S1(config-if)#switchport trunk encapsulation dot1q
     ```
+
 #### 3.6 VLAN natif
+
 * **Commande :**
-Lorsque des trames qui ne sont pas étiquetées sont transférées sur un port trunk, le switch vas les associés au vlan natif
+    Lorsque des trames qui ne sont pas étiquetées sont transférées sur un port trunk, le switch vas les associés au vlan natif
+
     ```cisco
     S1(config-if)#switchport trunk native vlan <numéro_vlan>
     ```
+
 #### 3.7 VLAN VOIX
+
 * **Commande :**
 
     ```cisco
     S1(config-if)#switchport voice vlan <vlan-id>
+    ```
+
+* **Résumé des VLANs et de leurs ports associés**
+
+    ```cisco
+    S1#show vlan brief
+    ```
+
+* **Informations détaillées sur les VLANs**
+
+    ```cisco
+    S1#show vlan
     ```
 
 ## Services Réseau
