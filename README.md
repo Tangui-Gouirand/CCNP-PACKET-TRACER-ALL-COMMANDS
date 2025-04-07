@@ -9,35 +9,56 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
         * 1.1.1. [Mot de passe d'activation (mode privilégié)](#mot-de-passe-dactivation-mode-privilégié)
         * 1.1.2. [Mot de passe d'accès à la console](#mot-de-passe-daccès-à-la-console)
         * 1.1.3. [Mot de passe d'accès VTY (SSH/Telnet)](#mot-de-passe-daccès-vty-sshtelnet)
-    * 1.2. [Déconnexion en Cas d'Inactivité](#déconnexion-en-cas-dinactivité)
-        * 1.2.1. [Déconnexion pour la console](#déconnexion-pour-la-console)
-        * 1.2.2. [Déconnexion pour VTY](#déconnexion-pour-vty)
-2.  [Protocole NTP (Network Time Protocol)](#protocole-ntp-network-time-protocol)
-    * 2.1. [Configuration du Serveur NTP](#configuration-du-serveur-ntp)
-        * 2.1.1. [Définir un serveur NTP](#définir-un-serveur-ntp)
-        * 2.1.2. [Définir un pair NTP (synchronisation mutuelle)](#définir-un-pair-ntp-synchronisation-mutuelle)
-        * 2.1.3. [Configurer l'appareil comme serveur NTP principal](#configurer-lappareil-comme-serveur-ntp-principal)
-    * 2.2. [Vérification de l'État NTP](#vérification-de-létat-ntp)
-        * 2.2.1. [Afficher l'état de la synchronisation NTP](#afficher-létat-de-la-synchronisation-ntp)
-        * 2.2.2. [Afficher les associations avec les serveurs NTP](#afficher-les-associations-avec-les-serveurs-ntp)
-        * 2.2.3. [Afficher les détails des associations NTP](#afficher-les-détails-des-associations-ntp)
-        * 2.2.4. [Afficher les détails de l'horloge](#afficher-les-détails-de-lhorloge)
-3.  [SNMP (Simple Network Management Protocol) - Gestion Réseau](#snmp-simple-network-management-protocol---gestion-réseau)
-    * 3.1. [Configuration de la Communauté SNMP](#configuration-de-la-communauté-snmp)
-    * 3.2. [Configuration des Hôtes SNMP](#configuration-des-hôtes-snmp)
-    * 3.3. [Configuration des Utilisateurs SNMPv3](#configuration-des-utilisateurs-snmpv3)
-    * 3.4. [Vérification de la Configuration SNMP](#vérification-de-la-configuration-snmp)
-4.  [SYSLOG](#syslog)
-5.  [SSH](#ssh)
-6.  [Banner Message](#banner-message)
-7.  [Fuseau Horaire](#fuseau-horaire)
-8.  [Désactiver la Recherche DNS](#désactiver-la-recherche-dns)
-9.  [Effacer la Configuration du Switch](#effacer-la-configuration-du-switch)
-10. [AAA](#aaa)
-    * 10.1. [Configuration AAA de base](#configuration-aaa-de-base)
-    * 10.2. [Comptes locaux](#comptes-locaux)
-    * 10.3. [Configuration RADIUS](#configuration-radius)
-    * 10.4. [Configuration TACACS+](#configuration-tacacs)
+    * 1.2. [AAA](#aaa)
+        * 1.2.1. [Configuration AAA de base](#configuration-aaa-de-base)
+        * 1.2.2. [Comptes locaux](#comptes-locaux)
+        * 1.2.3.  [Configuration RADIUS](#configuration-radius)
+        * 1.2.4.  [Configuration TACACS+](#configuration-tacacs)
+    * 1.3. [SSH](#ssh)
+    * 1.4. [Banner Message](#banner-message)
+    * 1.5. [Déconnexion en Cas d'Inactivité](#déconnexion-en-cas-dinactivité)
+        * 1.5.1. [Déconnexion pour la console](#déconnexion-pour-la-console)
+        * 1.5.2. [Déconnexion pour VTY](#déconnexion-pour-vty)
+2.  [Routage Dynamique](#routage-dynamique)
+    * 2.1. [OSPF](#ospf)
+        * 2.1.1. [Activation d'OSPF](#activation-dospf)
+        * 2.1.2. [Configuration du Router-ID](#configuration-du-router-id)
+        * 2.1.3. [Configuration des Interfaces OSPF](#configuration-des-interfaces-ospf)
+        * 2.1.4. [Annonce des Réseaux](#annonce-des-réseaux)
+        * 2.1.5. [Interface Passive](#interface-passive)
+        * 2.1.6. [Authentification MD5 sur une Interface](#authentification-md5-sur-une-interface)
+        * 2.1.7. [Authentification pour une Area](#authentification-pour-une-area)
+        * 2.1.8. [Affichage des Voisins OSPF](#affichage-des-voisins-ospf)
+    * 2.2. [EIGRP](#eigrp)
+        * 2.2.1. [Activation d'EIGRP](#activation-deigrp)
+        * 2.2.2. [Configuration du Router-ID](#configuration-du-router-id-1)
+        * 2.2.3. [Définition des Réseaux à Annoncer](#définition-des-réseaux-à-annoncer)
+        * 2.2.4. [Désactivation de la Summarization Automatique](#désactivation-de-la-summarization-automatique)
+        * 2.2.5. [Configuration de l'Interface Passive](#configuration-de-linterface-passive-1)
+        * 2.2.6. [Vérification des Voisins EIGRP](#vérification-des-voisins-eigrp)
+        * 2.2.7. [Vérification de la Table de Topologie EIGRP](#vérification-de-la-table-de-topologie-eigrp)
+        * 2.2.8. [Vérification de la Table de Routage EIGRP](#vérification-de-la-table-de-routage-eigrp)
+3.  [Services Réseau](#services-réseau)
+    * 3.1. [Protocole NTP (Network Time Protocol)](#protocole-ntp-network-time-protocol)
+        * 3.1.1. [Définir un serveur NTP](#définir-un-serveur-ntp)
+        * 3.1.2. [Définir un pair NTP (synchronisation mutuelle)](#définir-un-pair-ntp-synchronisation-mutuelle)
+        * 3.1.3. [Configurer l'appareil comme serveur NTP principal](#configurer-lappareil-comme-serveur-ntp-principal)
+    * 3.2. [Vérification de l'État NTP](#vérification-de-létat-ntp)
+        * 3.2.1. [Afficher l'état de la synchronisation NTP](#afficher-létat-de-la-synchronisation-ntp)
+        * 3.2.2. [Afficher les associations avec les serveurs NTP](#afficher-les-associations-avec-les-serveurs-ntp)
+        * 3.2.3. [Afficher les détails des associations NTP](#afficher-les-détails-des-associations-ntp)
+        * 3.2.4. [Afficher les détails de l'horloge](#afficher-les-détails-de-lhorloge)
+    * 3.2.  [SNMP (Simple Network Management Protocol) - Gestion Réseau](#snmp-simple-network-management-protocol---gestion-réseau)
+        * 3.2.1. [Configuration de la Communauté SNMP](#configuration-de-la-communauté-snmp)
+        * 3.2.2. [Configuration des Hôtes SNMP](#configuration-des-hôtes-snmp)
+        * 3.2.3. [Configuration des Utilisateurs SNMPv3](#configuration-des-utilisateurs-snmpv3)
+        * 3.2.4. [Vérification de la Configuration SNMP](#vérification-de-la-configuration-snmp)
+    * 3.3. [SYSLOG](#syslog)
+    * 3.4. [Fuseau Horaire](#fuseau-horaire)
+    * 3.5. [Désactiver la Recherche DNS](#désactiver-la-recherche-dns)
+4.  [Maintenance du Réseau](#maintenance-du-réseau)
+    * 4.1. [Effacer la Configuration du Switch](#effacer-la-configuration-du-switch)
+
 
 ## Sécurité et Accès
 
@@ -79,147 +100,110 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
 
 * **Explication :** `line vty 0 4` configure les lignes virtuelles pour les connexions Telnet et SSH (0 à 4 = 5 sessions simultanées).
 
-### 1.2 Déconnexion en Cas d'Inactivité
+### 1.2 AAA
 
-#### 1.2.1 Déconnexion pour la console
-
-* **Commande :**
-
-    ```cisco
-    Router(config)# line console 0
-    Router(config-line)# exec-timeout minutes secondes
-    ```
-
-* **Explication :** Remplacez `minutes` et `secondes` par la durée d'inactivité souhaitée.
-
-#### 1.2.2 Déconnexion pour VTY
-
-* **Commande :**
-
-    ```cisco
-    Router(config)# line vty 0 4
-    Router(config-line)# exec-timeout minutes secondes
-    ```
-
-* **Explication :** Remplacez `minutes` et `secondes` par la durée d'inactivité souhaitée.
-
-## Protocole NTP (Network Time Protocol)
-
-### 2.1 Configuration du Serveur NTP
-
-#### 2.1.1 Définir un serveur NTP
-
-* **Commande :**
-
-    ```cisco
-    Router(config)# ntp server adresse_ip_serveur
-    ```
-
-#### 2.1.2 Définir un pair NTP (synchronisation mutuelle)
-
-* **Commande :**
-
-    ```cisco
-    Router(config)# ntp peer adresse_ip_pair
-    ```
-
-#### 2.1.3 Configurer l'appareil comme serveur NTP principal
-
-* **Commande :**
-
-    ```cisco
-    Router(config)# ntp master
-    ```
-
-### 2.2 Vérification de l'État NTP
-
-#### 2.2.1 Afficher l'état de la synchronisation NTP
-
-* **Commande :**
-
-    ```cisco
-    Router# show ntp status
-    ```
-
-#### 2.2.2 Afficher les associations avec les serveurs NTP
-
-* **Commande :**
-
-    ```cisco
-    Router# show ntp associations
-    ```
-
-#### 2.2.3 Afficher les détails des associations NTP
-
-* **Commande :**
-
-    ```cisco
-    Router# show ntp associations detail
-    ```
-
-#### 2.2.4 Afficher les détails de l'horloge
-
-* **Commande :**
-
-    ```cisco
-    Router# show clock detail
-    ```
-
-## SNMP (Simple Network Management Protocol) - Gestion Réseau
-
-### 3.1 Configuration de la Communauté SNMP
-
-* **Commande :**
-
-    ```cisco
-    Router(config)# snmp-server community nom {RO|RW}
-    ```
-
-* **Explication :**
-    * `RO` (Read-Only) : Lecture seule.
-    * `RW` (Read-Write) : Lecture et écriture.
-
-### 3.2 Configuration des Hôtes SNMP
-
-* **Commande :**
-
-    ```cisco
-    Router(config)# snmp-server host adresse_ip_NMS community nom [traps|informs]
-    ```
-
-### 3.3 Configuration des Utilisateurs SNMPv3
-
-* **Commande :**
-
-    ```cisco
-    Router(config)# snmp-server user nom group-name auth {md5|sha} mot_de_passe priv {des|aes} mot_de_passe access acl-name
-    ```
-
-### 3.4 Vérification de la Configuration SNMP
+#### 1.2.1 Configuration AAA de base
 
 * **Commandes :**
 
     ```cisco
-    Router# show snmp community
-    Router# show snmp host
-    Router# show snmp traps
+    Router(config)# aaa new-model
+    Router(config)# aaa authentication login default group {tacacs+|radius|local}
     ```
 
-## SYSLOG
-
-* **Définir l'adresse du serveur Syslog :**
+    Définit la méthode d'authentification par défaut pour les connexions de connexion
 
     ```cisco
-    Router(config)# logging host adresse_ip_serveur
+    Router(config)# aaa authorization exec default group {tacacs+|radius|local}
     ```
 
-* **Définir le niveau de gravité des messages Syslog à envoyer (souvent debugging) :**
+    Définit la méthode d'autorisation par défaut pour les commandes EXEC.
 
     ```cisco
-    Router(config)# logging trap niveau_gravité
+    Router(config)# aaa accounting exec default start-stop group {tacacs+|radius}
     ```
 
-## SSH
+    Active la comptabilité pour les commandes EXEC.
+
+### 1.2.2 Comptes locaux
+
+* **Commande :**
+
+    ```cisco
+    Router(config)# username {nom_utilisateur} privilege 15 secret {mot_de_passe}
+    ```
+
+    Crée un compte utilisateur local avec privilège 15 (administrateur). Le mot de passe de type secret est chiffré
+
+### 1.2.3 Configuration RADIUS
+
+* **Commandes :**
+
+    ```cisco
+    Router(config)# radius server {nom}
+    ```
+
+    Définit un serveur radius
+
+    ```cisco
+    Router(config-radius-server)# address ipv4 {adresse_serveur} auth-port {port} acct-port {port}
+    ```
+
+    Definit l'adresse et le port du serveur radius.
+
+    ```cisco
+    Router(config-radius-server)# key {clé}
+    ```
+
+    Définit la clé secrète partagée avec le serveur RADIUS.
+
+    ```cisco
+    Router(config)# aaa authentication login default group radius local
+    ```
+
+    configure radius puis local en méthode de secours.
+
+    ```cisco
+    Router(config)# aaa authorization exec default group radius local
+    ```
+
+    configure radius puis local en méthode de secours.
+
+### 1.2.4 Configuration TACACS+
+
+* **Commandes :**
+
+    ```cisco
+    Router(config)# tacacs server {nom}
+    ```
+
+    Définit un serveur TACAS
+
+    ```cisco
+    Router(config-tacacs-server)# address ipv4 {adresse_serveur} port {port}
+    ```
+
+    Définit l'adresse et le port du serveur tacacs.
+
+    ```cisco
+    Router(config-tacacs-server)# key {clé}
+    ```
+
+    Définit la clé secrète partagée avec le serveur TACACS+.
+
+    ```cisco
+    Router(config)# aaa authentication login default group tacacs+ local
+    ```
+
+    configure tacacs+ puis local en méthode de secours.
+
+    ```cisco
+    Router(config)# aaa authorization exec default group tacacs+ local1
+    ```
+
+    configure tacacs+ puis local en méthode de secours.
+
+### 1.3 SSH
 
 * **Générer une clé RSA (nécessaire pour SSH) :**
 
@@ -255,7 +239,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# ip ssh authentication-retries nombre
     ```
 
-## Banner Message
+### 1.4 Banner Message
 
 * **Définir un message de bannière :**
 
@@ -268,7 +252,298 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     * `Login` : Affiche un message avant l'invite de connexion.
     * `Incoming` : Affiche un message pour les connexions entrantes (par exemple, Telnet, SSH).
 
-## Fuseau Horaire
+### 1.5 Déconnexion en Cas d'Inactivité
+
+#### 1.5.1 Déconnexion pour la console
+
+* **Commande :**
+
+    ```cisco
+    Router(config)# line console 0
+    Router(config-line)# exec-timeout minutes secondes
+    ```
+
+* **Explication :** Remplacez `minutes` et `secondes` par la durée d'inactivité souhaitée.
+
+#### 1.5.2 Déconnexion pour VTY
+
+* **Commande :**
+
+    ```cisco
+    Router(config)# line vty 0 4
+    Router(config-line)# exec-timeout minutes secondes
+    ```
+
+* **Explication :** Remplacez `minutes` et `secondes` par la durée d'inactivité souhaitée.
+
+## Routage Dynamique
+
+### 2.1 OSPF
+
+#### 2.1.1 Activation d'OSPF
+
+* **Commande :**
+
+    ```cisco
+    R1(config)# router ospf <process-id>
+    ```
+
+    * **Explication** Active le processus OSPF et spécifie l'ID de processus OSPF
+
+#### 2.1.2 Configuration du Router-ID
+
+* **Commande :**
+
+    ```cisco
+    R1(config-router)#ospf router-id <id ex:1.1.1.1>
+    ```
+
+#### 2.1.3 Configuration des Interfaces OSPF
+
+* **Commandes :**
+
+    ```cisco
+    R1(config)# interface <interface>
+    R1(config-if)# ip ospf <process-id> area  <num area>
+    ```
+
+#### 2.1.4 Annonce des Réseaux
+
+* **Commandes :**
+
+    ```cisco
+    R1(config-router)# network 192.168.1.0 0.0.0.255 area <num area>
+    R1(config-router)# network 10.0.0.0 0.0.255.255 area <num area>
+    ```
+
+#### 2.1.5 Interface Passive
+
+* **Commande :**
+
+    ```cisco
+    R1(config-router)# passive-interface GigabitEthernet0/0
+    ```
+    * **Explication**: Désactive l'envoi de paquets OSPF sur une interface
+
+#### 2.1.6 Authentification MD5 sur une Interface
+
+* **Commandes :**
+
+    ```cisco
+    Router(config)# interface FastEthernet0/0
+    Router(config-if)# ip ospf message-digest-key 1 md5 MOTDEPASSE
+    Router(config-if)# ip ospf authentication message-digest
+    ```
+
+#### 2.1.7 Authentification pour une Area
+
+* **Commandes :**
+
+    ```cisco
+    Router(config)# router ospf 1
+    Router(config-router)# area 0 authentication message-digest
+    ```
+
+#### 2.1.8 Affichage des Voisins OSPF
+
+* **Commandes :**
+
+    ```cisco
+    R1#show ip ospf neighbors
+    ```
+
+    Ou
+
+    ```cisco
+    R1#show ip ospf database
+    ```
+
+### 2.2 EIGRP
+
+#### 2.2.1 Activation d'EIGRP
+
+* **Commande :**
+
+    ```cisco
+    R1(config)#router eigrp <numero_AS>
+    ```
+
+#### 2.2.2 Configuration du Router-ID
+
+* **Commande :**
+
+    ```cisco
+    R1(config-router)#eigrp router-id <id ex:1.1.1.1>
+    ```
+
+#### 2.2.3 Définition des Réseaux à Annoncer
+
+* **Commande :**
+
+    ```cisco
+    network <adresse_réseau> [mask-inversé]
+    ```
+
+    * **Explication**: L'utilisation du masque générique est optionnelle mais recommandée
+
+#### 2.2.4 Désactivation de la Summarization Automatique
+
+* **Commande :**
+
+    ```cisco
+    R1(config-router)#no auto-summary
+    ```
+
+#### 2.2.5 Configuration de l'Interface Passive
+
+* **Commande :**
+
+    ```cisco
+    R1(config-router)# passive-interface GigabitEthernet0/0
+    ```
+    * **Explication**: Empêche l'envoi de mises à jour EIGRP sur une interface.
+
+#### 2.2.6 Vérification des Voisins EIGRP
+
+* **Commande :**
+
+    ```cisco
+    R1#show ip eigrp neighbors
+    ```
+
+#### 2.2.7 Vérification de la Table de Topologie EIGRP
+
+* **Commande :**
+
+    ```cisco
+    R1#show ip eigrp topology
+    ```
+
+#### 2.2.8 Vérification de la Table de Routage EIGRP
+
+* **Commande :**
+
+    ```cisco
+    R1#show ip route eigrp
+    ```
+
+## Services Réseau
+
+### 3.1 Protocole NTP (Network Time Protocol)
+
+#### 3.1.1 Définir un serveur NTP
+
+* **Commande :**
+
+    ```cisco
+    Router(config)# ntp server adresse_ip_serveur
+    ```
+
+#### 3.1.2 Définir un pair NTP (synchronisation mutuelle)
+
+* **Commande :**
+
+    ```cisco
+    Router(config)# ntp peer adresse_ip_pair
+    ```
+
+#### 3.1.3 Configurer l'appareil comme serveur NTP principal
+
+* **Commande :**
+
+    ```cisco
+    Router(config)# ntp master
+    ```
+
+### 3.2 Vérification de l'État NTP
+
+#### 3.2.1 Afficher l'état de la synchronisation NTP
+
+* **Commande :**
+
+    ```cisco
+    Router# show ntp status
+    ```
+
+#### 3.2.2 Afficher les associations avec les serveurs NTP
+
+* **Commande :**
+
+    ```cisco
+    Router# show ntp associations
+    ```
+
+#### 3.2.3 Afficher les détails des associations NTP
+
+* **Commande :**
+
+    ```cisco
+    Router# show ntp associations detail
+    ```
+
+#### 3.2.4 Afficher les détails de l'horloge
+
+* **Commande :**
+
+    ```cisco
+    Router# show clock detail
+    ```
+
+### 3.2  SNMP (Simple Network Management Protocol) - Gestion Réseau
+
+#### 3.2.1 Configuration de la Communauté SNMP
+
+* **Commande :**
+
+    ```cisco
+    Router(config)# snmp-server community nom {RO|RW}
+    ```
+
+* **Explication :**
+    * `RO` (Read-Only) : Lecture seule.
+    * `RW` (Read-Write) : Lecture et écriture.
+
+#### 3.2.2 Configuration des Hôtes SNMP
+
+* **Commande :**
+
+    ```cisco
+    Router(config)# snmp-server host adresse_ip_NMS community nom [traps|informs]
+    ```
+
+### 3.2.3 Configuration des Utilisateurs SNMPv3
+
+* **Commande :**
+
+    ```cisco
+    Router(config)# snmp-server user nom group-name auth {md5|sha} mot_de_passe priv {des|aes} mot_de_passe access acl-name
+    ```
+
+### 3.2.4 Vérification de la Configuration SNMP
+
+* **Commandes :**
+
+    ```cisco
+    Router# show snmp community
+    Router# show snmp host
+    Router# show snmp traps
+    ```
+
+### 3.3 SYSLOG
+
+* **Définir l'adresse du serveur Syslog :**
+
+    ```cisco
+    Router(config)# logging host adresse_ip_serveur
+    ```
+
+* **Définir le niveau de gravité des messages Syslog à envoyer (souvent debugging) :**
+
+    ```cisco
+    Router(config)# logging trap niveau_gravité
+    ```
+
+### 3.4 Fuseau Horaire
 
 * **Définir le fuseau horaire :**
 
@@ -282,7 +557,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# show clock detail
     ```
 
-## Désactiver la Recherche DNS
+### 3.5 Désactiver la Recherche DNS
 
 * **Désactiver la recherche DNS :**
 
@@ -290,7 +565,9 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# no ip domain-lookup
     ```
 
-## Effacer la Configuration du Switch
+## Maintenance du Réseau
+
+### 4.1 Effacer la Configuration du Switch
 
 * **Effacer la configuration du switch :**
 
@@ -299,106 +576,3 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     S1# delete vlan.dat
     S1# reload
     ```
-
-## AAA
-
-### 10.1 Configuration AAA de base
-
-* **Commandes :**
-
-    ```cisco
-    Router(config)# aaa new-model
-    Router(config)# aaa authentication login default group {tacacs+|radius|local}
-    ```
-
-    Définit la méthode d'authentification par défaut pour les connexions de connexion
-
-    ```cisco
-    Router(config)# aaa authorization exec default group {tacacs+|radius|local}
-    ```
-
-    Définit la méthode d'autorisation par défaut pour les commandes EXEC.
-
-    ```cisco
-    Router(config)# aaa accounting exec default start-stop group {tacacs+|radius}
-    ```
-
-    Active la comptabilité pour les commandes EXEC.
-
-### 10.2 Comptes locaux
-
-* **Commande :**
-
-    ```cisco
-    Router(config)# username {nom_utilisateur} privilege 15 secret {mot_de_passe}
-    ```
-
-    Crée un compte utilisateur local avec privilège 15 (administrateur). Le mot de passe de type secret est chiffré
-
-### 10.3 Configuration RADIUS
-
-* **Commandes :**
-
-    ```cisco
-    Router(config)# radius server {nom}
-    ```
-
-    Définit un serveur radius
-
-    ```cisco
-    Router(config-radius-server)# address ipv4 {adresse_serveur} auth-port {port} acct-port {port}
-    ```
-
-    Definit l'adresse et le port du serveur radius.
-
-    ```cisco
-    Router(config-radius-server)# key {clé}
-    ```
-
-    Définit la clé secrète partagée avec le serveur RADIUS.
-
-    ```cisco
-    Router(config)# aaa authentication login default group radius local
-    ```
-
-    configure radius puis local en méthode de secours.
-
-    ```cisco
-    Router(config)# aaa authorization exec default group radius local
-    ```
-
-    configure radius puis local en méthode de secours.
-
-### 10.4 Configuration TACACS+
-
-* **Commandes :**
-
-    ```cisco
-    Router(config)# tacacs server {nom}
-    ```
-
-    Définit un serveur TACAS
-
-    ```cisco
-    Router(config-tacacs-server)# address ipv4 {adresse_serveur} port {port}
-    ```
-
-    Définit l'adresse et le port du serveur tacacs.
-
-    ```cisco
-    Router(config-tacacs-server)# key {clé}
-    ```
-
-    Définit la clé secrète partagée avec le serveur TACACS+.
-
-    ```cisco
-    Router(config)# aaa authentication login default group tacacs+ local
-    ```
-
-    configure tacacs+ puis local en méthode de secours.
-
-    ```cisco
-    Router(config)# aaa authorization exec default group tacacs+ local1
-    ```
-
-    configure tacacs+ puis local en méthode de secours.
