@@ -38,27 +38,43 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
         * 2.2.6. [Vérification des Voisins EIGRP](#vérification-des-voisins-eigrp)
         * 2.2.7. [Vérification de la Table de Topologie EIGRP](#vérification-de-la-table-de-topologie-eigrp)
         * 2.2.8. [Vérification de la Table de Routage EIGRP](#vérification-de-la-table-de-routage-eigrp)
-3.  [Services Réseau](#services-réseau)
-    * 3.1. [Protocole NTP (Network Time Protocol)](#protocole-ntp-network-time-protocol)
-        * 3.1.1. [Définir un serveur NTP](#définir-un-serveur-ntp)
-        * 3.1.2. [Définir un pair NTP (synchronisation mutuelle)](#définir-un-pair-ntp-synchronisation-mutuelle)
-        * 3.1.3. [Configurer l'appareil comme serveur NTP principal](#configurer-lappareil-comme-serveur-ntp-principal)
-    * 3.2. [Vérification de l'État NTP](#vérification-de-létat-ntp)
-        * 3.2.1. [Afficher l'état de la synchronisation NTP](#afficher-létat-de-la-synchronisation-ntp)
-        * 3.2.2. [Afficher les associations avec les serveurs NTP](#afficher-les-associations-avec-les-serveurs-ntp)
-        * 3.2.3. [Afficher les détails des associations NTP](#afficher-les-détails-des-associations-ntp)
-        * 3.2.4. [Afficher les détails de l'horloge](#afficher-les-détails-de-lhorloge)
-    * 3.2.  [SNMP (Simple Network Management Protocol) - Gestion Réseau](#snmp-simple-network-management-protocol---gestion-réseau)
-        * 3.2.1. [Configuration de la Communauté SNMP](#configuration-de-la-communauté-snmp)
-        * 3.2.2. [Configuration des Hôtes SNMP](#configuration-des-hôtes-snmp)
-        * 3.2.3. [Configuration des Utilisateurs SNMPv3](#configuration-des-utilisateurs-snmpv3)
-        * 3.2.4. [Vérification de la Configuration SNMP](#vérification-de-la-configuration-snmp)
-    * 3.3. [SYSLOG](#syslog)
-    * 3.4. [Fuseau Horaire](#fuseau-horaire)
-    * 3.5. [Désactiver la Recherche DNS](#désactiver-la-recherche-dns)
-4.  [Maintenance du Réseau](#maintenance-du-réseau)
-    * 4.1. [Effacer la Configuration du Switch](#effacer-la-configuration-du-switch)
-
+    * 2.3. [BGP](#bgp)
+        * 2.3.1 [Activation de BGP](#activation-de-bgp)
+        * 2.3.2 [Définition des Voisins BGP](#définition-des-voisins-bgp)
+        * 2.3.3 [Annonce d'un Réseau à Travers BGP](#annonce-dun-réseau-à-travers-bgp)
+        * 2.3.4 [Redistribution de la Route par Défaut BGP](#redistribution-de-la-route-par-défaut-bgp)
+3.  [VLAN](#vlan)
+    * 3.1. [Création de VLANs](#création-de-vlans)
+    * 3.2. [Définir interface ip du VLAN](#définir-interface-ip-du-vlan)
+    * 3.3. [Configuration des ports VLAN access (1vlan par lien)](#configuration-des-ports-vlan-access-1vlan-par-lien)
+    * 3.4. [Configuration des ports VLAN TRUNK](#configuration-des-ports-vlan-trunk)
+    * 3.5. [Protocole 802.1Q pour étiqueter les trames avec l'ID du VLAN (TRUNK)](#protocole-8021q-pour-étiqueter-les-trames-avec-lid-du-vlan-trunk)
+    * 3.6. [VLAN natif](#vlan-natif)
+    * 3.7. [VLAN VOIX](#vlan-voix)
+4.  [Services Réseau](#services-réseau)
+    * 4.1. [Protocole NTP (Network Time Protocol)](#protocole-ntp-network-time-protocol)
+        * 4.1.1. [Définir un serveur NTP](#définir-un-serveur-ntp)
+        * 4.1.2. [Définir un pair NTP (synchronisation mutuelle)](#définir-un-pair-ntp-synchronisation-mutuelle)
+        * 4.1.3. [Configurer l'appareil comme serveur NTP principal](#configurer-lappareil-comme-serveur-ntp-principal)
+    * 4.2. [Vérification de l'État NTP](#vérification-de-létat-ntp)
+        * 4.2.1. [Afficher l'état de la synchronisation NTP](#afficher-létat-de-la-synchronisation-ntp)
+        * 4.2.2. [Afficher les associations avec les serveurs NTP](#afficher-les-associations-avec-les-serveurs-ntp)
+        * 4.2.3. [Afficher les détails des associations NTP](#afficher-les-détails-des-associations-ntp)
+        * 4.2.4. [Afficher les détails de l'horloge](#afficher-les-détails-de-lhorloge)
+    * 4.3.  [SNMP (Simple Network Management Protocol) - Gestion Réseau](#snmp-simple-network-management-protocol---gestion-réseau)
+        * 4.3.1. [Configuration de la Communauté SNMP](#configuration-de-la-communauté-snmp)
+        * 4.3.2. [Configuration des Hôtes SNMP](#configuration-des-hôtes-snmp)
+        * 4.3.3. [Configuration des Utilisateurs SNMPv3](#configuration-des-utilisateurs-snmpv3)
+        * 4.3.4. [Vérification de la Configuration SNMP](#vérification-de-la-configuration-snmp)
+    * 4.4. [DHCP](#dhcp)
+        * 4.4.1. [Configuration du Pool DHCP](#configuration-du-pool-dhcp)
+        * 4.4.2. [Définition du Serveur DNS pour le DHCP](#définition-du-serveur-dns-pour-le-dhcp)
+        * 4.4.3. [Exclusion d'Adresses IP](#exclusion-dadresses-ip)
+    * 4.5. [SYSLOG](#syslog)
+    * 4.6. [Fuseau Horaire](#fuseau-horaire)
+    * 4.7. [Désactiver la Recherche DNS](#désactiver-la-recherche-dns)
+5.  [Maintenance du Réseau](#maintenance-du-réseau)
+    * 5.1. [Effacer la Configuration du Switch](#effacer-la-configuration-du-switch)
 
 ## Sécurité et Accès
 
@@ -427,11 +443,96 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     R1#show ip route eigrp
     ```
 
+### 2.3 BGP
+
+#### 2.3.1 Activation de BGP
+
+* **Commande :**
+
+    ```cisco
+    R1(config)#router bgp <numero_AS>
+    ```
+
+#### 2.3.2 Définition des Voisins BGP
+
+* **Commande :**
+
+    ```cisco
+    R1(config-router)#neighbor <adresse_réseau> remote-as <numero_AS_voisin>
+    ```
+
+#### 2.3.3 Annonce d'un Réseau à Travers BGP
+
+* **Commande :**
+
+    ```cisco
+    R1(config-router)#network <adresse_réseau> mask <masque_sous-réseau>
+    ```
+
+#### 2.3.4 Redistribution de la Route par Défaut BGP
+
+* **Commande :**
+
+    ```cisco
+    R1(config-router)#default-information originate
+    ```
+
+## VLAN
+
+### 3.1 Création de VLANs
+
+* **Commandes :**
+
+    ```cisco
+    S1(config)#vlan <numéro_vlan>
+    S1(config-vlan)#name <nom_vlan>
+    ```
+#### 3.2 Définir interface ip du VLAN
+* **Commandes :**
+
+    ```cisco
+    S1(config)#interface vlan <numéro_vlan>
+    S1(config-if)#ip address 192.168.10.254 255.255.255.0
+    S1(config-if)#ip default-gateway 192.168.10.1
+    ```
+#### 3.3 Configuration des ports VLAN access (1vlan par lien)
+* **Commandes :**
+
+    ```cisco
+    S1(config-if)#switchport mode access
+    S1(config-if)#switchport access vlan <numéro_vlan>
+    ```
+#### 3.4 Configuration des ports VLAN TRUNK
+* **Commande :**
+Configure un port en mode trunk (pour les liaisons inter-switch ou routeur)
+    ```cisco
+    S1(config-if)#switchport mode trunk
+    S1(config-if)#switchport trunk allowed vlan <liste_vlans>
+    ```
+#### 3.5 Protocole 802.1Q pour étiqueter les trames avec l'ID du VLAN (TRUNK)
+* **Commande :**
+
+    ```cisco
+    S1(config-if)#switchport trunk encapsulation dot1q
+    ```
+#### 3.6 VLAN natif
+* **Commande :**
+Lorsque des trames qui ne sont pas étiquetées sont transférées sur un port trunk, le switch vas les associés au vlan natif
+    ```cisco
+    S1(config-if)#switchport trunk native vlan <numéro_vlan>
+    ```
+#### 3.7 VLAN VOIX
+* **Commande :**
+
+    ```cisco
+    S1(config-if)#switchport voice vlan <vlan-id>
+    ```
+
 ## Services Réseau
 
-### 3.1 Protocole NTP (Network Time Protocol)
+### 4.1 Protocole NTP (Network Time Protocol)
 
-#### 3.1.1 Définir un serveur NTP
+#### 4.1.1 Définir un serveur NTP
 
 * **Commande :**
 
@@ -439,7 +540,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# ntp server adresse_ip_serveur
     ```
 
-#### 3.1.2 Définir un pair NTP (synchronisation mutuelle)
+#### 4.1.2 Définir un pair NTP (synchronisation mutuelle)
 
 * **Commande :**
 
@@ -447,7 +548,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# ntp peer adresse_ip_pair
     ```
 
-#### 3.1.3 Configurer l'appareil comme serveur NTP principal
+#### 4.1.3 Configurer l'appareil comme serveur NTP principal
 
 * **Commande :**
 
@@ -455,9 +556,9 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# ntp master
     ```
 
-### 3.2 Vérification de l'État NTP
+### 4.2 Vérification de l'État NTP
 
-#### 3.2.1 Afficher l'état de la synchronisation NTP
+#### 4.2.1 Afficher l'état de la synchronisation NTP
 
 * **Commande :**
 
@@ -465,7 +566,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# show ntp status
     ```
 
-#### 3.2.2 Afficher les associations avec les serveurs NTP
+#### 4.2.2 Afficher les associations avec les serveurs NTP
 
 * **Commande :**
 
@@ -473,7 +574,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# show ntp associations
     ```
 
-#### 3.2.3 Afficher les détails des associations NTP
+#### 4.2.3 Afficher les détails des associations NTP
 
 * **Commande :**
 
@@ -481,7 +582,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# show ntp associations detail
     ```
 
-#### 3.2.4 Afficher les détails de l'horloge
+#### 4.2.4 Afficher les détails de l'horloge
 
 * **Commande :**
 
@@ -489,9 +590,9 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# show clock detail
     ```
 
-### 3.2  SNMP (Simple Network Management Protocol) - Gestion Réseau
+### 4.3  SNMP (Simple Network Management Protocol) - Gestion Réseau
 
-#### 3.2.1 Configuration de la Communauté SNMP
+#### 4.3.1 Configuration de la Communauté SNMP
 
 * **Commande :**
 
@@ -503,7 +604,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     * `RO` (Read-Only) : Lecture seule.
     * `RW` (Read-Write) : Lecture et écriture.
 
-#### 3.2.2 Configuration des Hôtes SNMP
+#### 4.3.2 Configuration des Hôtes SNMP
 
 * **Commande :**
 
@@ -511,7 +612,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# snmp-server host adresse_ip_NMS community nom [traps|informs]
     ```
 
-### 3.2.3 Configuration des Utilisateurs SNMPv3
+### 4.3.3 Configuration des Utilisateurs SNMPv3
 
 * **Commande :**
 
@@ -519,7 +620,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# snmp-server user nom group-name auth {md5|sha} mot_de_passe priv {des|aes} mot_de_passe access acl-name
     ```
 
-### 3.2.4 Vérification de la Configuration SNMP
+### 4.3.4 Vérification de la Configuration SNMP
 
 * **Commandes :**
 
@@ -529,7 +630,36 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# show snmp traps
     ```
 
-### 3.3 SYSLOG
+### 4.4 DHCP
+
+#### 4.4.1 Configuration du Pool DHCP
+
+* **Commandes :**
+
+    ```cisco
+    Routerconfig)# ip dhcp pool Mon_POOL_DHCP
+    Router(dhcp-config)# network 192.168.10.0 255.255.255.0
+    Router(dhcp-config)# default-router 192.168.10.1
+    Router(dhcp-config)#domain-name MONDOMAINE.FR
+    ```
+
+#### 4.4.2 Définition du Serveur DNS pour le DHCP
+
+* **Commande :**
+
+    ```cisco
+    Router(dhcp-config)# dns-server 8.8.8.8
+    ```
+
+#### 4.4.3 Exclusion d'Adresses IP
+
+* **Commande :**
+
+    ```cisco
+    Router(config)# ip dhcp excluded-address 192.168.10.1 192.168.10.10
+    ```
+
+### 4.5 SYSLOG
 
 * **Définir l'adresse du serveur Syslog :**
 
@@ -543,7 +673,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# logging trap niveau_gravité
     ```
 
-### 3.4 Fuseau Horaire
+### 4.6 Fuseau Horaire
 
 * **Définir le fuseau horaire :**
 
@@ -557,7 +687,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# show clock detail
     ```
 
-### 3.5 Désactiver la Recherche DNS
+### 4.7 Désactiver la Recherche DNS
 
 * **Désactiver la recherche DNS :**
 
@@ -567,7 +697,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
 
 ## Maintenance du Réseau
 
-### 4.1 Effacer la Configuration du Switch
+### 5.1 Effacer la Configuration du Switch
 
 * **Effacer la configuration du switch :**
 
