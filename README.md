@@ -1,7 +1,11 @@
+[![Status](https://img.shields.io/badge/status-en%20cours-green.svg)](https://shields.io/)
+[![Sujet](https://img.shields.io/badge/Sujet-CCNP%20ENCOR%20350--401-blue.svg)](https://www.cisco.com/c/en/us/training-events/training-certifications/exams/current-list/encor-350-401.html)
+[![Outil](https://img.shields.io/badge/Outil-Packet%20Tracer-orange.svg)](https://www.netacad.com/courses/packet-tracer)
+[![Langue](https://img.shields.io/badge/Langue-Fran%C3%A7ais-blue.svg)](https://shields.io/)
+[![Dernier Commit](https://img.shields.io/github/last-commit/Tangui-Gouirand/CCNP-PACKET-TRACER-ALL-COMMANDS)](https://github.com/Tangui-Gouirand/CCNP-PACKET-TRACER-ALL-COMMANDS/commits/main)
+
 # CCNP-PACKET-TRACER-COMMANDES-UTILES FR
 English version coming soon... ✍️
-
-Ce document rassemble les commandes les plus utiles pour la préparation du CCNP Encor sur Packet Tracer.
 
 > **Note importante :** Ce guide se concentre *uniquement* sur les commandes et les technologies supportées par **Packet Tracer**. Les sujets avancés de l'examen ENCOR (Wireless, SD-WAN, automatisation, etc.) ne sont pas inclus.
 
