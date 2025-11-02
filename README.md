@@ -42,6 +42,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
         * 2.2.6. [Authentification MD5 sur une Interface](#226-authentification-md5-sur-une-interface)
         * 2.2.7. [Authentification pour une Area](#227-authentification-pour-une-area)
         * 2.2.8. [Vérification OSPF](#228-vérification-ospf)
+        * 2.2.9. [Résumé de Route OSPF](#229-Résumé-de-route-ospf)
     * 2.3. [EIGRP](#23-eigrp)
         * 2.3.1. [Activation d'EIGRP](#231-activation-deigrp)
         * 2.3.2. [Configuration du Router-ID](#232-configuration-du-router-id)
@@ -49,6 +50,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
         * 2.3.4. [Désactivation de la Summarization Automatique](#234-désactivation-de-la-summarization-automatique)
         * 2.3.5. [Configuration de l'Interface Passive](#235-configuration-de-linterface-passive)
         * 2.3.6. [Vérification EIGRP](#236-vérification-eigrp)
+        * 2.3.7. [Résumé de Route EIGRP](#237-résumé-de-route-eigrp)
     * 2.4. [BGP](#24-bgp)
         * 2.4.1 [Activation de BGP](#241-activation-de-bgp)
         * 2.4.2. [Définition des Voisins BGP](#242-définition-des-voisins-bgp)
@@ -487,6 +489,15 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     R1# show ip ospf interface brief
     ```
 
+#### 2.2.9 Résumé de Route OSPF
+
+* **Commande :**
+    ```ini
+    R1(config)# router ospf <process-id>
+    R1(config-router)# area <area-id> range <adresse_réseau> <masque>
+    ```
+* **Explication :** Se configure sur un ABR (Area Border Router) pour résumer les routes d'une zone vers la zone backbone (ou vice-versa).
+
 ### 2.3 EIGRP
 
 #### 2.3.1 Activation d'EIGRP
@@ -540,6 +551,14 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     ```ini
     R1# show ip route eigrp
     ```
+#### 2.3.7 Résumé de Route EIGRP
+
+* **Commande :**
+    ```ini
+    R1(config)# interface <type/num>
+    R1(config-if)# ip summary-address eigrp <numero_AS> <adresse_réseau> <masque>
+    ```
+* **Explication :** Se configure sur l'interface sortante pour résumer les routes annoncées aux voisins sur cette interface.
 
 ### 2.4 BGP
 
