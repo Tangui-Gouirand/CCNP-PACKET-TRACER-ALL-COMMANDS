@@ -4,7 +4,7 @@ English version coming soon... ✍️
 ⚠️C'EST PAS FINI, IL MANQUE : SPANNING TREE, NAT-PAT, ACL, ETHERCHANNEL ET TOUT LES TRUCS EN LIEN AVEC IPV6
 
 
-Ce document rassemble les commandes les plus utiles pour la préparation du CCNP sur Packet Tracer. Il est organisé par thèmes pour une consultation facile.
+Ce document rassemble les commandes les plus utiles pour la préparation du CCNP sur Packet Tracer.
 
 ## Table des Matières
 
@@ -23,6 +23,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     * 1.5. [Déconnexion en Cas d'Inactivité](#déconnexion-en-cas-dinactivité)
         * 1.5.1. [Déconnexion pour la console](#déconnexion-pour-la-console)
         * 1.5.2. [Déconnexion pour VTY](#déconnexion-pour-vty)
+
 2.  [Routage Dynamique](#routage-dynamique)
     * 2.1. [OSPF](#ospf)
         * 2.1.1. [Activation d'OSPF](#activation-dospf)
@@ -49,6 +50,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
         * 2.3.4. [Redistribution de la Route par Défaut BGP](#redistribution-de-la-route-par-défaut-bgp)
     * 2.4. [HSRP](#hsrp)
     * 2.5. [Tunnel GRE](#tunnel-gre)
+
 3.  [VLAN](#vlan)
     * 3.1. [Création de VLANs](#création-de-vlans)
     * 3.2. [Définir interface ip du VLAN](#définir-interface-ip-du-vlan)
@@ -58,30 +60,76 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
         * 3.4.2. [VLAN natif](#vlan-natif)
         * 3.4.3. [VLAN VOIX](#vlan-voix)
     * 3.5. [Routage Inter-VLAN](#routage-inter-vlan)
-4.  [Services Réseau](#services-réseau)
-    * 4.1. [Protocole NTP (Network Time Protocol)](#protocole-ntp-network-time-protocol)
-        * 4.1.1. [Définir un serveur NTP](#définir-un-serveur-ntp)
-        * 4.1.2. [Définir un pair NTP (synchronisation mutuelle)](#définir-un-pair-ntp-synchronisation-mutuelle)
-        * 4.1.3. [Configurer l'appareil comme serveur NTP principal](#configurer-lappareil-comme-serveur-ntp-principal)
-    * 4.2. [Vérification de l'État NTP](#vérification-de-létat-ntp)
-        * 4.2.1. [Afficher l'état de la synchronisation NTP](#afficher-létat-de-la-synchronisation-ntp)
-        * 4.2.2. [Afficher les associations avec les serveurs NTP](#afficher-les-associations-avec-les-serveurs-ntp)
-        * 4.2.3. [Afficher les détails des associations NTP](#afficher-les-détails-des-associations-ntp)
-        * 4.2.4. [Afficher les détails de l'horloge](#afficher-les-détails-de-lhorloge)
-    * 4.3.  [SNMP (Simple Network Management Protocol) - Gestion Réseau](#snmp-simple-network-management-protocol---gestion-réseau)
-        * 4.3.1. [Configuration de la Communauté SNMP](#configuration-de-la-communauté-snmp)
-        * 4.3.2. [Configuration des Hôtes SNMP](#configuration-des-hôtes-snmp)
-        * 4.3.3. [Configuration des Utilisateurs SNMPv3](#configuration-des-utilisateurs-snmpv3)
-        * 4.3.4. [Vérification de la Configuration SNMP](#vérification-de-la-configuration-snmp)
-    * 4.4. [DHCP](#dhcp)
-        * 4.4.1. [Configuration du Pool DHCP](#configuration-du-pool-dhcp)
-        * 4.4.2. [Définition du Serveur DNS pour le DHCP](#définition-du-serveur-dns-pour-le-dhcp)
-        * 4.4.3. [Exclusion d'Adresses IP](#exclusion-dadresses-ip)
-    * 4.5. [SYSLOG](#syslog)
-    * 4.6. [Fuseau Horaire](#fuseau-horaire)
-    * 4.7. [Désactiver la Recherche DNS](#désactiver-la-recherche-dns)
-5.  [Maintenance du Réseau](#maintenance-du-réseau)
-    * 5.1. [Effacer la Configuration du Switch](#effacer-la-configuration-du-switch)
+
+4.  [Spanning Tree Protocol (STP)](#spanning-tree-protocol-stp)
+    * 4.1. [Configuration du mode STP](#configuration-du-mode-stp)
+    * 4.2. [Priorité et racine](#priorité-et-racine)
+    * 4.3. [Timers STP](#timers-stp)
+    * 4.4. [PortFast / BPDU Guard](#portfast-bpdu-guard)
+    * 4.5. [MSTP (Multiple Spanning Tree)](#mstp-multiple-spanning-tree)
+    * 4.6. [Vérification STP](#vérification-stp)
+
+5.  [EtherChannel](#etherchannel)
+    * 5.1. [LACP EtherChannel](#lacp-etherchannel)
+    * 5.2. [PAgP EtherChannel](#pagp-etherchannel)
+    * 5.3. [Statique EtherChannel](#statique-etherchannel)
+    * 5.4. [Interface Port-Channel](#interface-port-channel)
+    * 5.5. [Vérification EtherChannel](#verif-etherchannel)
+
+6.  [NAT/PAT](#natpat)
+    * 6.1. [NAT statique](#nat-statique)
+    * 6.2. [NAT dynamique](#nat-dynamique)
+    * 6.3. [PAT (NAT overload)](#pat-nat-overload)
+    * 6.4. [Port forwarding (PAT statique)](#port-forwarding-pat)
+    * 6.5. [Définition inside/outside](#inside-outside-nat)
+    * 6.6. [Vérification NAT/PAT](#verif-nat-pat)
+
+7.  [Access Control Lists (ACL)](#access-control-lists-acl)
+    * 7.1. [ACL standard](#acl-standard)
+    * 7.2. [ACL étendue](#acl-etendue)
+    * 7.3. [ACL nommée](#acl-nommee)
+    * 7.4. [Application interface](#application-acl-interface)
+    * 7.5. [Application VTY](#application-acl-vty)
+    * 7.6. [Suppression/Séquence](#suppression-sequence-acl)
+    * 7.7. [Vérification ACL](#verif-acl)
+
+8.  [IPv6 (Routage et Autoconfiguration)](#ipv6-routage-et-autoconfiguration)
+    * 8.1. [Activation IPv6](#activation-ipv6)
+    * 8.2. [Adresse interface IPv6](#adresse-interface-ipv6)
+    * 8.3. [Routage statique IPv6](#routage-statique-ipv6)
+    * 8.4. [OSPFv3](#ospfv3)
+    * 8.5. [EIGRPv6](#eigrpv6)
+    * 8.6. [BGP IPv6](#bgp-ipv6)
+    * 8.7. [SLAAC](#slaac)
+    * 8.8. [DHCPv6](#dhcpv6-stateless-stateful)
+    * 8.9. [DHCPv6 relay](#dhcpv6-relay)
+    * 8.10. [Vérification IPv6](#verif-ipv6)
+
+9.  [Services Réseau](#services-réseau)
+    * 9.1. [Protocole NTP](#protocole-ntp-network-time-protocol)
+        * 9.1.1. [Serveur NTP](#serveur-ntp)
+        * 9.1.2. [Pair NTP](#pair-ntp)
+        * 9.1.3. [Serveur principal NTP](#serveur-principal-ntp)
+    * 9.2. [Vérification NTP](#verif-ntp)
+        * 9.2.1. [Synchronisation NTP](#etat-synchronisation-ntp)
+        * 9.2.2. [Associations serveurs](#associations-serveurs-ntp)
+        * 9.2.3. [Détails associations](#details-associations-ntp)
+        * 9.2.4. [Détails horloge](#details-horloge)
+    * 9.3. [SNMP](#snmp)
+        * 9.3.1. [Communauté SNMP](#communaute-snmp)
+        * 9.3.2. [Hôtes SNMP](#hotes-snmp)
+        * 9.3.3. [Utilisateurs SNMPv3](#utilisateurs-snmpv3)
+        * 9.3.4. [Vérification SNMP](#verif-snmp)
+    * 9.4. [DHCP](#dhcp)
+        * 9.4.1. [Pool DHCP](#pool-dhcp)
+        * 9.4.2. [Serveur DNS](#serveur-dns-dhcp)
+        * 9.4.3. [Exclusions IP](#exclusion-ip-dhcp)
+    * 9.5. [SYSLOG](#syslog)
+    * 9.6. [Fuseau Horaire](#fuseau-horaire)
+    * 9.7. [Désactivation Recherche DNS](#desactiver-recherche-dns)
+
+10. [Maintenance du Réseau](#maintenance-du-réseau)
+    * 10.1.  [Effacer la configuration du switch](#effacer-la-configuration-du-switch)
 
 ## Sécurité et Accès
 
@@ -661,9 +709,9 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
 
 ## Services Réseau
 
-### 4.1 Protocole NTP (Network Time Protocol)
+### 9.1 Protocole NTP (Network Time Protocol)
 
-#### 4.1.1 Définir un serveur NTP
+#### 9.1.1 Définir un serveur NTP
 
 * **Commande :**
 
@@ -671,7 +719,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# ntp server adresse_ip_serveur
     ```
 
-#### 4.1.2 Définir un pair NTP (synchronisation mutuelle)
+#### 9.1.2 Définir un pair NTP (synchronisation mutuelle)
 
 * **Commande :**
 
@@ -679,7 +727,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# ntp peer adresse_ip_pair
     ```
 
-#### 4.1.3 Configurer l'appareil comme serveur NTP principal
+#### 9.1.3 Configurer l'appareil comme serveur NTP principal
 
 * **Commande :**
 
@@ -687,9 +735,9 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# ntp master
     ```
 
-### 4.2 Vérification de l'État NTP
+### 9.2 Vérification de l'État NTP
 
-#### 4.2.1 Afficher l'état de la synchronisation NTP
+#### 9.2.1 Afficher l'état de la synchronisation NTP
 
 * **Commande :**
 
@@ -697,7 +745,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# show ntp status
     ```
 
-#### 4.2.2 Afficher les associations avec les serveurs NTP
+#### 9.2.2 Afficher les associations avec les serveurs NTP
 
 * **Commande :**
 
@@ -705,7 +753,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# show ntp associations
     ```
 
-#### 4.2.3 Afficher les détails des associations NTP
+#### 9.2.3 Afficher les détails des associations NTP
 
 * **Commande :**
 
@@ -713,7 +761,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# show ntp associations detail
     ```
 
-#### 4.2.4 Afficher les détails de l'horloge
+#### 9.2.4 Afficher les détails de l'horloge
 
 * **Commande :**
 
@@ -721,9 +769,9 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# show clock detail
     ```
 
-### 4.3  SNMP (Simple Network Management Protocol) - Gestion Réseau
+### 9.3  SNMP (Simple Network Management Protocol) - Gestion Réseau
 
-#### 4.3.1 Configuration de la Communauté SNMP
+#### 9.3.1 Configuration de la Communauté SNMP
 
 * **Commande :**
 
@@ -735,7 +783,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     * `RO` (Read-Only) : Lecture seule.
     * `RW` (Read-Write) : Lecture et écriture.
 
-#### 4.3.2 Configuration des Hôtes SNMP
+#### 9.3.2 Configuration des Hôtes SNMP
 
 * **Commande :**
 
@@ -743,7 +791,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# snmp-server host adresse_ip_NMS community nom [traps|informs]
     ```
 
-### 4.3.3 Configuration des Utilisateurs SNMPv3
+### 9.3.3 Configuration des Utilisateurs SNMPv3
 
 * **Commande :**
 
@@ -751,7 +799,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# snmp-server user nom group-name auth {md5|sha} mot_de_passe priv {des|aes} mot_de_passe access acl-name
     ```
 
-### 4.3.4 Vérification de la Configuration SNMP
+### 9.3.4 Vérification de la Configuration SNMP
 
 * **Commandes :**
 
@@ -761,9 +809,9 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# show snmp traps
     ```
 
-### 4.4 DHCP
+### 9.4 DHCP
 
-#### 4.4.1 Configuration du Pool DHCP
+#### 9.4.1 Configuration du Pool DHCP
 
 * **Commandes :**
 
@@ -774,7 +822,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(dhcp-config)#domain-name MONDOMAINE.FR
     ```
 
-#### 4.4.2 Définition du Serveur DNS pour le DHCP
+#### 9.4.2 Définition du Serveur DNS pour le DHCP
 
 * **Commande :**
 
@@ -782,7 +830,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(dhcp-config)# dns-server 8.8.8.8
     ```
 
-#### 4.4.3 Exclusion d'Adresses IP
+#### 9.4.3 Exclusion d'Adresses IP
 
 * **Commande :**
 
@@ -790,7 +838,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# ip dhcp excluded-address 192.168.10.1 192.168.10.10
     ```
 
-### 4.5 SYSLOG
+### 9.5 SYSLOG
 
 * **Définir l'adresse du serveur Syslog :**
 
@@ -804,7 +852,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# logging trap niveau_gravité
     ```
 
-### 4.6 Fuseau Horaire
+### 9.6 Fuseau Horaire
 
 * **Définir le fuseau horaire :**
 
@@ -818,7 +866,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# show clock detail
     ```
 
-### 4.7 Désactiver la Recherche DNS
+### 9.7 Désactiver la Recherche DNS
 
 * **Désactiver la recherche DNS :**
 
@@ -828,7 +876,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
 
 ## Maintenance du Réseau
 
-### 5.1 Effacer la Configuration du Switch
+### 10.1 Effacer la Configuration du Switch
 
 * **Effacer la configuration du switch :**
 
