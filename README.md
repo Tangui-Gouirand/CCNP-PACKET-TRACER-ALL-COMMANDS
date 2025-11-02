@@ -7,6 +7,11 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
 
 ## Table des Matières
 
+0.  [Configuration Initiale et Vérifications](#0-configuration-initiale-et-vérifications)
+    * 0.1. [Configuration de Base](#01-configuration-de-base)
+    * 0.2. [Commandes de Vérification Fondamentales](#02-commandes-de-vérification-fondamentales)
+    * 0.3. [Test de Connectivité](#03-test-de-connectivité)
+
 1.  [Sécurité et Accès](#1-sécurité-et-accès)
     * 1.1. [Configuration des Mots de Passe](#11-configuration-des-mots-de-passe)
         * 1.1.1. [Mot de passe d'activation (mode privilégié)](#111-mot-de-passe-dactivation-mode-privilégié)
@@ -22,35 +27,40 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     * 1.5. [Déconnexion en Cas d'Inactivité](#15-déconnexion-en-cas-dinactivité)
         * 1.5.1. [Déconnexion pour la console](#151-déconnexion-pour-la-console)
         * 1.5.2. [Déconnexion pour VTY](#152-déconnexion-pour-vty)
+    * 1.6. [Port Security](#16-port-security)
+        * 1.6.1. [Configuration Port Security](#161-configuration-port-security)
+        * 1.6.2. [Vérification Port Security](#162-vérification-port-security)
 
-2.  [Routage Dynamique](#2-routage-dynamique)
-    * 2.1. [OSPF](#21-ospf)
-        * 2.1.1. [Activation d'OSPF](#211-activation-dospf)
-        * 2.1.2. [Configuration du Router-ID](#212-configuration-du-router-id)
-        * 2.1.3. [Configuration des Interfaces OSPF](#213-configuration-des-interfaces-ospf)
-        * 2.1.4. [Annonce des Réseaux](#214-annonce-des-réseaux)
-        * 2.1.5. [Interface Passive](#215-interface-passive)
-        * 2.1.6. [Authentification MD5 sur une Interface](#216-authentification-md5-sur-une-interface)
-        * 2.1.7. [Authentification pour une Area](#217-authentification-pour-une-area)
-        * 2.1.8. [Affichage des Voisins OSPF](#218-affichage-des-voisins-ospf)
-    * 2.2. [EIGRP](#22-eigrp)
-        * 2.2.1. [Activation d'EIGRP](#221-activation-deigrp)
+2.  [Routage Statique et Dynamique](#2-routage-statique-et-dynamique)
+    * 2.1. [Routage Statique (IPv4)](#21-routage-statique-ipv4)
+    * 2.2. [OSPF](#22-ospf)
+        * 2.2.1. [Activation d'OSPF](#221-activation-dospf)
         * 2.2.2. [Configuration du Router-ID](#222-configuration-du-router-id)
-        * 2.2.3. [Définition des Réseaux à Annoncer](#223-définition-des-réseaux-à-annoncer)
-        * 2.2.4. [Désactivation de la Summarization Automatique](#224-désactivation-de-la-summarization-automatique)
-        * 2.2.5. [Configuration de l'Interface Passive](#225-configuration-de-linterface-passive)
-        * 2.2.6. [Vérification des Voisins EIGRP](#226-vérification-des-voisins-eigrp)
-        * 2.2.7. [Vérification de la Table de Topologie EIGRP](#227-vérification-de-la-table-de-topologie-eigrp)
-        * 2.2.8. [Vérification de la Table de Routage EIGRP](#228-vérification-de-la-table-de-routage-eigrp)
-    * 2.3. [BGP](#23-bgp)
-        * 2.3.1 [Activation de BGP](#231-activation-de-bgp)
-        * 2.3.2. [Définition des Voisins BGP](#232-définition-des-voisins-bgp)
-        * 2.3.3. [Annonce d'un Réseau à Travers BGP](#233-annonce-dun-réseau-à-travers-bgp)
-        * 2.3.4. [Redistribution de la Route par Défaut BGP](#234-redistribution-de-la-route-par-défaut-bgp)
-    * 2.4. [HSRP](#24-hsrp)
-    * 2.5. [Tunnel GRE](#25-tunnel-gre)
+        * 2.2.3. [Configuration des Interfaces OSPF](#223-configuration-des-interfaces-ospf)
+        * 2.2.4. [Annonce des Réseaux](#224-annonce-des-réseaux)
+        * 2.2.5. [Interface Passive](#225-interface-passive)
+        * 2.2.6. [Authentification MD5 sur une Interface](#226-authentification-md5-sur-une-interface)
+        * 2.2.7. [Authentification pour une Area](#227-authentification-pour-une-area)
+        * 2.2.8. [Vérification OSPF](#228-vérification-ospf)
+    * 2.3. [EIGRP](#23-eigrp)
+        * 2.3.1. [Activation d'EIGRP](#231-activation-deigrp)
+        * 2.3.2. [Configuration du Router-ID](#232-configuration-du-router-id)
+        * 2.3.3. [Définition des Réseaux à Annoncer](#233-définition-des-réseaux-à-annoncer)
+        * 2.3.4. [Désactivation de la Summarization Automatique](#234-désactivation-de-la-summarization-automatique)
+        * 2.3.5. [Configuration de l'Interface Passive](#235-configuration-de-linterface-passive)
+        * 2.3.6. [Vérification EIGRP](#236-vérification-eigrp)
+    * 2.4. [BGP](#24-bgp)
+        * 2.4.1 [Activation de BGP](#241-activation-de-bgp)
+        * 2.4.2. [Définition des Voisins BGP](#242-définition-des-voisins-bgp)
+        * 2.4.3. [Annonce d'un Réseau à Travers BGP](#243-annonce-dun-réseau-à-travers-bgp)
+        * 2.4.4. [Redistribution de la Route par Défaut BGP](#244-redistribution-de-la-route-par-défaut-bgp)
+    * 2.5. [Redistribution](#25-redistribution)
+        * 2.5.1. [EIGRP vers OSPF](#251-eigrp-vers-ospf)
+        * 2.5.2. [OSPF vers EIGRP](#252-ospf-vers-eigrp)
+    * 2.6. [HSRP](#26-hsrp)
+    * 2.7. [Tunnel GRE](#27-tunnel-gre)
 
-3.  [VLAN](#3-vlan)
+3.  [VLAN et Commutation L2](#3-vlan-et-commutation-l2)
     * 3.1. [Création de VLANs](#31-création-de-vlans)
     * 3.2. [Définir interface ip du VLAN (SVI)](#32-définir-interface-ip-du-vlan-svi)
     * 3.3. [Configuration des ports VLAN access](#33-configuration-des-ports-vlan-access)
@@ -60,6 +70,10 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
         * 3.4.3. [VLAN VOIX](#343-vlan-voix)
     * 3.5. [Routage Inter-VLAN](#35-routage-inter-vlan)
     * 3.6. [Vérification VLAN](#36-vérification-vlan)
+    * 3.7. [DTP (Dynamic Trunking Protocol)](#37-dtp-dynamic-trunking-protocol)
+    * 3.8. [VTP (VLAN Trunking Protocol)](#38-vtp-vlan-trunking-protocol)
+        * 3.8.1. [Configuration VTP](#381-configuration-vtp)
+        * 3.8.2. [Vérification VTP](#382-vérification-vtp)
 
 4.  [Spanning Tree Protocol (STP)](#4-spanning-tree-protocol-stp)
     * 4.1. [Configuration du mode STP](#41-configuration-du-mode-stp)
@@ -120,16 +134,76 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
         * 9.3.2. [Hôtes SNMP](#932-hôtes-snmp)
         * 9.3.3. [Utilisateurs SNMPv3](#933-utilisateurs-snmpv3)
         * 9.3.4. [Vérification SNMP](#934-vérification-snmp)
-    * 9.4. [DHCP](#94-dhcp)
+    * 9.4. [DHCP (IPv4)](#94-dhcp-ipv4)
         * 9.4.1. [Pool DHCP](#941-pool-dhcp)
         * 9.4.2. [Serveur DNS](#942-serveur-dns)
         * 9.4.3. [Exclusions IP](#943-exclusions-ip)
-    * 9.5. [SYSLOG](#95-syslog)
-    * 9.6. [Fuseau Horaire](#96-fuseau-horaire)
-    * 9.7. [Désactivation Recherche DNS](#97-désactivation-recherche-dns)
+    * 9.5. [DHCP Relay (IPv4)](#95-dhcp-relay-ipv4)
+    * 9.6. [CDP / LLDP](#96-cdp--lldp)
+        * 9.6.1. [Configuration](#961-configuration)
+        * 9.6.2. [Vérification](#962-vérification)
+    * 9.7. [SYSLOG](#97-syslog)
+    * 9.8. [Fuseau Horaire](#98-fuseau-horaire)
+    * 9.9. [Désactivation Recherche DNS](#99-désactivation-recherche-dns)
 
 10. [Maintenance du Réseau](#10-maintenance-du-réseau)
     * 10.1. [Effacer la configuration du switch](#101-effacer-la-configuration-du-switch)
+
+---
+
+## 0. Configuration Initiale et Vérifications
+
+### 0.1 Configuration de Base
+
+* **Définir le nom de l'équipement :**
+    ```ini
+    Router(config)# hostname R1
+    ```
+* **Enregistrer la configuration en cours dans la configuration de démarrage :**
+    ```ini
+    R1# copy running-config startup-config
+    ```
+    * **Raccourci :** `wr`
+
+### 0.2 Commandes de Vérification Fondamentales
+
+* **Afficher la configuration en cours :**
+    ```ini
+    R1# show running-config
+    ```
+* **Afficher la configuration de démarrage :**
+    ```ini
+    R1# show startup-config
+    ```
+* **Afficher un résumé de l'état des interfaces IP :**
+    ```ini
+    R1# show ip interface brief
+    ```
+* **Afficher les détails d'une interface (état, erreurs, duplex, etc.) :**
+    ```ini
+    R1# show interfaces GigabitEthernet0/0
+    ```
+* **Afficher la table de routage IP :**
+    ```ini
+    R1# show ip route
+    ```
+* **Afficher les informations système (version IOS, uptime, etc.) :**
+    ```ini
+    R1# show version
+    ```
+
+### 0.3 Test de Connectivité
+
+* **Envoyer des requêtes ICMP (ping) :**
+    ```ini
+    R1# ping 192.168.1.1
+    ```
+* **Tracer le chemin vers une destination :**
+    ```ini
+    R1# traceroute 8.8.8.8
+    ```
+
+---
 
 ## 1. Sécurité et Accès
 
@@ -297,11 +371,50 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     ```
 * **Explication :** Remplacez `minutes` et `secondes` par la durée d'inactivité souhaitée.
 
-## 2. Routage Dynamique
+### 1.6 Port Security
 
-### 2.1 OSPF
+#### 1.6.1 Configuration Port Security
 
-#### 2.1.1 Activation d'OSPF
+* **Commandes :**
+    ```ini
+    Switch(config)# interface <type/num>
+    Switch(config-if)# switchport mode access
+    Switch(config-if)# switchport port-security
+    Switch(config-if)# switchport port-security maximum <nombre>
+    Switch(config-if)# switchport port-security violation {shutdown | restrict | protect}
+    Switch(config-if)# switchport port-security mac-address sticky
+    ```
+* **Explications :**
+    * `port-security` : Active la sécurité du port.
+    * `maximum` : Définit le nombre maximum d'adresses MAC autorisées.
+    * `violation` : Définit l'action en cas de violation (shutdown est le plus courant).
+    * `mac-address sticky` : Apprend dynamiquement les adresses MAC et les ajoute à la running-config.
+
+#### 1.6.2 Vérification Port Security
+
+* **Commande :**
+    ```ini
+    Switch# show port-security interface <type/num>
+    ```
+
+---
+
+## 2. Routage Statique et Dynamique
+
+### 2.1 Routage Statique (IPv4)
+
+* **Route vers un réseau :**
+    ```ini
+    Router(config)# ip route <réseau_destination> <masque> <ip_next-hop | interface_sortie>
+    ```
+* **Route par défaut :**
+    ```ini
+    Router(config)# ip route 0.0.0.0 0.0.0.0 <ip_next-hop | interface_sortie>
+    ```
+
+### 2.2 OSPF
+
+#### 2.2.1 Activation d'OSPF
 
 * **Commande :**
     ```ini
@@ -309,14 +422,15 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     ```
     * **Explication** Active le processus OSPF et spécifie l'ID de processus OSPF
 
-#### 2.1.2 Configuration du Router-ID
+#### 2.2.2 Configuration du Router-ID
 
 * **Commande :**
     ```ini
-    R1(config-router)#ospf router-id <id ex:1.1.1.1>
+    R1(config-router)# ospf router-id <id ex:1.1.1.1>
     ```
+    * **Note :** Sur Packet Tracer, `router-id <id>` est parfois la commande correcte.
 
-#### 2.1.3 Configuration des Interfaces OSPF
+#### 2.2.3 Configuration des Interfaces OSPF
 
 * **Commandes :**
     ```ini
@@ -324,7 +438,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     R1(config-if)# ip ospf <process-id> area <num area>
     ```
 
-#### 2.1.4 Annonce des Réseaux
+#### 2.2.4 Annonce des Réseaux
 
 * **Commandes :**
     ```ini
@@ -332,7 +446,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     R1(config-router)# network 10.0.0.0 0.0.255.255 area <num area>
     ```
 
-#### 2.1.5 Interface Passive
+#### 2.2.5 Interface Passive
 
 * **Commande :**
     ```ini
@@ -340,7 +454,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     ```
     * **Explication**: Désactive l'envoi de paquets OSPF sur une interface
 
-#### 2.1.6 Authentification MD5 sur une Interface
+#### 2.2.6 Authentification MD5 sur une Interface
 
 * **Commandes :**
     ```ini
@@ -349,7 +463,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config-if)# ip ospf authentication message-digest
     ```
 
-#### 2.1.7 Authentification pour une Area
+#### 2.2.7 Authentification pour une Area
 
 * **Commandes :**
     ```ini
@@ -357,49 +471,53 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config-router)# area 0 authentication message-digest
     ```
 
-#### 2.1.8 Affichage des Voisins OSPF
+#### 2.2.8 Vérification OSPF
 
-* **Commandes :**
+* **Affichage des Voisins OSPF :**
     ```ini
-    R1# show ip ospf neighbors
+    R1# show ip ospf neighbor
     ```
-    Ou
+* **Affichage de la base de données OSPF :**
     ```ini
     R1# show ip ospf database
     ```
+* **Affichage des interfaces OSPF :**
+    ```ini
+    R1# show ip ospf interface brief
+    ```
 
-### 2.2 EIGRP
+### 2.3 EIGRP
 
-#### 2.2.1 Activation d'EIGRP
+#### 2.3.1 Activation d'EIGRP
 
 * **Commande :**
     ```ini
     R1(config)# router eigrp <numero_AS>
     ```
 
-#### 2.2.2 Configuration du Router-ID
+#### 2.3.2 Configuration du Router-ID
 
 * **Commande :**
     ```ini
     R1(config-router)# eigrp router-id <id ex:1.1.1.1>
     ```
 
-#### 2.2.3 Définition des Réseaux à Annoncer
+#### 2.3.3 Définition des Réseaux à Annoncer
 
 * **Commande :**
     ```ini
-    network <adresse_réseau> [mask-inversé]
+    R1(config-router)# network <adresse_réseau> [mask-inversé]
     ```
     * **Explication**: L'utilisation du masque générique est optionnelle mais recommandée
 
-#### 2.2.4 Désactivation de la Summarization Automatique
+#### 2.3.4 Désactivation de la Summarization Automatique
 
 * **Commande :**
     ```ini
     R1(config-router)# no auto-summary
     ```
 
-#### 2.2.5 Configuration de l'Interface Passive
+#### 2.3.5 Configuration de l'Interface Passive
 
 * **Commande :**
     ```ini
@@ -407,58 +525,73 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     ```
     * **Explication**: Empêche l'envoi de mises à jour EIGRP sur une interface.
 
-#### 2.2.6 Vérification des Voisins EIGRP
+#### 2.3.6 Vérification EIGRP
 
-* **Commande :**
+* **Vérification des Voisins EIGRP :**
     ```ini
     R1# show ip eigrp neighbors
     ```
-
-#### 2.2.7 Vérification de la Table de Topologie EIGRP
-
-* **Commande :**
+* **Vérification de la Table de Topologie EIGRP :**
     ```ini
     R1# show ip eigrp topology
     ```
-
-#### 2.2.8 Vérification de la Table de Routage EIGRP
-
-* **Commande :**
+* **Vérification de la Table de Routage EIGRP :**
     ```ini
     R1# show ip route eigrp
     ```
 
-### 2.3 BGP
+### 2.4 BGP
 
-#### 2.3.1 Activation de BGP
+#### 2.4.1 Activation de BGP
 
 * **Commande :**
     ```ini
     R1(config)# router bgp <numero_AS>
     ```
 
-#### 2.3.2 Définition des Voisins BGP
+#### 2.4.2 Définition des Voisins BGP
 
 * **Commande :**
     ```ini
     R1(config-router)# neighbor <adresse_réseau> remote-as <numero_AS_voisin>
     ```
 
-#### 2.3.3 Annonce d'un Réseau à Travers BGP
+#### 2.4.3 Annonce d'un Réseau à Travers BGP
 
 * **Commande :**
     ```ini
     R1(config-router)# network <adresse_réseau> mask <masque_sous-réseau>
     ```
 
-#### 2.3.4 Redistribution de la Route par Défaut BGP
+#### 2.4.4 Redistribution de la Route par Défaut BGP
 
 * **Commande :**
     ```ini
     R1(config-router)# default-information originate
     ```
 
-### 2.4 HSRP
+### 2.5 Redistribution
+
+#### 2.5.1 EIGRP vers OSPF
+
+* **Commande :**
+    ```ini
+    R1(config)# router ospf 1
+    R1(config-router)# redistribute eigrp <numero_AS> subnets
+    ```
+* **Explication :** `subnets` est crucial pour inclure tous les sous-réseaux.
+
+#### 2.5.2 OSPF vers EIGRP
+
+* **Commande :**
+    ```ini
+    R1(config)# router eigrp <numero_AS>
+    R1(config-router)# redistribute ospf <process-id> metric <bw> <delay> <reliability> <load> <mtu>
+    ```
+* **Explication :** EIGRP nécessite la définition de métriques par défaut lors de la redistribution.
+* **Exemple de métriques :** `metric 10000 10 255 1 1500`
+
+### 2.6 HSRP
 
 * **Configuration Interface :**
     * S'applique sur une interface (physique ou SVI `interface Vlan <num>`)
@@ -486,7 +619,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# show standby brief
     ```
 
-### 2.5 Tunnel GRE
+### 2.7 Tunnel GRE
 
 * **Commandes de configuration :**
     ```ini
@@ -502,14 +635,16 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     * `tunnel source` : Définit l'adresse IP ou l'interface source du tunnel.
     * `tunnel destination` : Définit l'adresse IP de destination du tunnel.
     * `tunnel mode gre ip` : Indique que le type de tunnel est GRE.
-    * `ip mtu 1400` : Ajuste la MTU (Maximum Transmission Unit) du tunnel pour éviter la fragmentation (1500 - 24 (GRE+IP) - 20 (IP) = 1456. 1400 est une valeur sûre).
+    * `ip mtu 1400` : Ajuste la MTU (Maximum Transmission Unit) du tunnel pour éviter la fragmentation.
 
 * **Vérification :**
     ```ini
     Router# show interfaces tunnel {numéro}
     ```
 
-## 3. VLAN
+---
+
+## 3. VLAN et Commutation L2
 
 ### 3.1 Création de VLANs
 
@@ -602,6 +737,45 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     S1# show vlan
     ```
 
+### 3.7 DTP (Dynamic Trunking Protocol)
+
+* **Configuration :**
+    ```ini
+    S1(config-if)# switchport mode dynamic {auto | desirable}
+    ```
+* **Désactivation (Bonne pratique) :**
+    ```ini
+    S1(config-if)# switchport nonegotiate
+    ```
+* **Explications :**
+    * `dynamic desirable` : Tente activement de former un trunk.
+    * `dynamic auto` : Devient un trunk si le voisin est en mode `trunk` ou `desirable`.
+    * `nonegotiate` : Désactive DTP (doit être utilisé avec `switchport mode trunk` ou `access`).
+
+### 3.8 VTP (VLAN Trunking Protocol)
+
+#### 3.8.1 Configuration VTP
+
+* **Commandes :**
+    ```ini
+    S1(config)# vtp mode {server | client | transparent}
+    S1(config)# vtp domain <nom-domaine>
+    S1(config)# vtp password <mot-de-passe>
+    ```
+* **Explications :**
+    * `server` : Peut créer/modifier/supprimer des VLANs et les propage.
+    * `client` : Reçoit les mises à jour VTP mais ne peut pas modifier les VLANs localement.
+    * `transparent` : Ne participe pas à VTP (mais relaie les annonces VTP).
+
+#### 3.8.2 Vérification VTP
+
+* **Commande :**
+    ```ini
+    S1# show vtp status
+    ```
+
+---
+
 ## 4. Spanning Tree Protocol (STP)
 
 ### 4.1 Configuration du mode STP
@@ -673,6 +847,8 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     ```
     * Vérifie toute la topologie STP, état des ponts racines, config MST répliquée sur tous les switches.
 
+---
+
 ## 5. EtherChannel
 
 ### 5.1 LACP EtherChannel
@@ -689,7 +865,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     * `active` : le switch initie activement la négociation LACP.
     * `passive` : le switch attend que l’autre device lance la négociation.
 
-### 5.2 PAgP EtherChannel (Cisco propriétaire)
+### 5.2 PAgP EtherChannel
 
 * **Commandes :**
     ```ini
@@ -703,7 +879,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     * `desirable` : le switch initie activement la négociation PAgP.
     * `auto` : le switch attend que l’autre device lance la négociation.
 
-### 5.3 Statique EtherChannel (manuel)
+### 5.3 Statique EtherChannel
 
 * **Commande :**
     ```ini
@@ -732,6 +908,8 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Switch# show pagp neighbor
     ```
     * Affiche résumé des groupes, interfaces membres et état de la négociation.
+
+---
 
 ## 6. NAT/PAT
 
@@ -785,6 +963,8 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# clear ip nat translation *
     Router# debug ip nat
     ```
+
+---
 
 ## 7. Access Control Lists (ACL)
 
@@ -855,6 +1035,8 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     ```
     * Affiche les ACL configurées et leur application sur les interfaces.
 
+---
+
 ## 8. IPv6 (Routage et Autoconfiguration)
 
 ### 8.1 Activation IPv6
@@ -884,7 +1066,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     * Route statique vers un réseau IPv6.
     * Exemple de route par défaut (any) : `ipv6 route ::/0 <next-hop>`
 
-### 8.4 OSPFv3 (OSPF pour IPv6)
+### 8.4 OSPFv3
 
 * **Commandes :**
     ```ini
@@ -920,7 +1102,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     ```
     * Configuration BGP pour IPv6 (MP-BGP).
 
-### 8.7 SLAAC (Stateless Address Autoconfiguration)
+### 8.7 SLAAC
 
 * **Commande :**
     ```ini
@@ -958,6 +1140,8 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# show ipv6 route
     Router# show ipv6 protocols
     ```
+
+---
 
 ## 9. Services Réseau
 
@@ -1049,7 +1233,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# show snmp traps
     ```
 
-### 9.4 DHCP
+### 9.4 DHCP (IPv4)
 
 #### 9.4.1 Pool DHCP
 
@@ -1075,7 +1259,42 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# ip dhcp excluded-address 192.168.10.1 192.168.10.10
     ```
 
-### 9.5 SYSLOG
+### 9.5 DHCP Relay (IPv4)
+
+* **Commande :**
+    ```ini
+    Router(config)# interface <interface_SVI_ou_routeur>
+    Router(config-if)# ip helper-address <adresse_ip_serveur_dhcp>
+    ```
+* **Explication :** Se configure sur l'interface qui reçoit les broadcasts DHCP des clients.
+
+### 9.6 CDP / LLDP
+
+#### 9.6.1 Configuration
+
+* **Activation/Désactivation globale :**
+    ```ini
+    Router(config)# cdp run
+    Router(config)# no cdp run
+    Router(config)# lldp run
+    Router(config)# no lldp run
+    ```
+* **Activation/Désactivation par interface :**
+    ```ini
+    Router(config-if)# cdp enable
+    Router(config-if)# no cdp enable
+    ```
+
+#### 9.6.2 Vérification
+
+* **Commandes :**
+    ```ini
+    Router# show cdp neighbors
+    Router# show cdp neighbors detail
+    Router# show lldp neighbors
+    ```
+
+### 9.7 SYSLOG
 
 * **Définir l'adresse du serveur Syslog :**
     ```ini
@@ -1086,7 +1305,7 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# logging trap debugging
     ```
 
-### 9.6 Fuseau Horaire
+### 9.8 Fuseau Horaire
 
 * **Définir le fuseau horaire :**
     ```ini
@@ -1097,12 +1316,14 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router# show clock detail
     ```
 
-### 9.7 Désactivation Recherche DNS
+### 9.9 Désactivation Recherche DNS
 
 * **Désactiver la recherche DNS :**
     ```ini
     Router(config)# no ip domain-lookup
     ```
+
+---
 
 ## 10. Maintenance du Réseau
 
