@@ -143,8 +143,9 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
         * 9.6.1. [Configuration](#961-configuration)
         * 9.6.2. [Vérification](#962-vérification)
     * 9.7. [SYSLOG](#97-syslog)
-    * 9.8. [Fuseau Horaire](#98-fuseau-horaire)
-    * 9.9. [Désactivation Recherche DNS](#99-désactivation-recherche-dns)
+    * 9.8. [Heure Date Manuel](#98-heure-date-manuel)
+    * 9.9. [Fuseau Horaire](#99-fuseau-horaire)
+    * 9.10. [Désactivation Recherche DNS](#910-désactivation-recherche-dns)
 
 10. [Maintenance du Réseau](#10-maintenance-du-réseau)
     * 10.1. [Effacer la configuration du switch](#101-effacer-la-configuration-du-switch)
@@ -1305,18 +1306,26 @@ Ce document rassemble les commandes les plus utiles pour la préparation du CCNP
     Router(config)# logging trap debugging
     ```
 
-### 9.8 Fuseau Horaire
+### 9.8 Heure Date Manuel
+
+* **Réglage manuel de l'horloge (Si pas de NTP):**
+    ```ini
+    Router# clock set HH:MM:SS <jour> <Mois> <année>
+    ```
+    
+### 9.9 Fuseau Horaire
 
 * **Définir le fuseau horaire :**
     ```ini
     Router(config)# clock timezone nom_fuseau_horaire décalage_utc
     ```
+    
 * **Afficher les détails de l'horloge :**
     ```ini
     Router# show clock detail
     ```
 
-### 9.9 Désactivation Recherche DNS
+### 9.10 Désactivation Recherche DNS
 
 * **Désactiver la recherche DNS :**
     ```ini
