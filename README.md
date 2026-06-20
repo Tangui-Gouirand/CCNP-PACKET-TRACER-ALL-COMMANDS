@@ -188,6 +188,8 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
 
 ## 0. Configuration Initiale et Vérifications
 
+> Commandes de base pour nommer, sauvegarder et vérifier l'état d'un équipement, et tester la connectivité.
+
 ### 0.1 Configuration de Base
 
 * **Définir le nom de l'équipement :**
@@ -202,45 +204,31 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
 
 ### 0.2 Commandes de Vérification Fondamentales
 
-* **Afficher la configuration en cours :**
-    ```ini
-    R1# show running-config
-    ```
-* **Afficher la configuration de démarrage :**
-    ```ini
-    R1# show startup-config
-    ```
-* **Afficher un résumé de l'état des interfaces IP :**
-    ```ini
-    R1# show ip interface brief
-    ```
-* **Afficher les détails d'une interface (état, erreurs, duplex, etc.) :**
-    ```ini
-    R1# show interfaces GigabitEthernet0/0
-    ```
-* **Afficher la table de routage IP :**
-    ```ini
-    R1# show ip route
-    ```
-* **Afficher les informations système (version IOS, uptime, etc.) :**
-    ```ini
-    R1# show version
-    ```
+| Commande | Rôle |
+| :--- | :--- |
+| `show running-config` | Affiche la configuration en cours (RAM) |
+| `show startup-config` | Affiche la configuration de démarrage (NVRAM) |
+| `show ip interface brief` | Résumé de l'état des interfaces IP |
+| `show interfaces <type/num>` | Détails d'une interface (état, erreurs, duplex…) |
+| `show ip route` | Table de routage IP |
+| `show version` | Informations système (version IOS, uptime…) |
+
+> 💡 Ces commandes s'exécutent en mode privilégié (`R1#`).
 
 ### 0.3 Test de Connectivité
 
-* **Envoyer des requêtes ICMP (ping) :**
-    ```ini
-    R1# ping 192.168.1.1
-    ```
-* **Tracer le chemin vers une destination :**
-    ```ini
-    R1# traceroute 8.8.8.8
-    ```
+| Commande | Rôle |
+| :--- | :--- |
+| `ping <ip>` | Envoie des requêtes ICMP vers une destination |
+| `traceroute <ip>` | Trace le chemin (saut par saut) vers une destination |
+
+[⬆️ Retour au sommaire](#table-des-matières)
 
 ---
 
 ## 1. Sécurité et Accès
+
+> Sécurisation de l'accès aux équipements : mots de passe, AAA, SSH, bannières et port-security.
 
 ### 1.1 Configuration des Mots de Passe
 
@@ -291,6 +279,7 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
     Router(config)# aaa authorization exec default group {tacacs+|radius} local
     ```
     * **Note :** `local` est une méthode à part entière (base locale) et ne se place **pas** derrière `group` (`group local` est invalide). Ici elle sert de méthode de secours si le serveur AAA est injoignable.
+
     Active la comptabilité pour les commandes EXEC :
     ```ini
     Router(config)# aaa accounting exec default start-stop group {tacacs+|radius}
@@ -433,9 +422,13 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
     Switch# show port-security interface <type/num>
     ```
 
+[⬆️ Retour au sommaire](#table-des-matières)
+
 ---
 
 ## 2. Routage Statique et Dynamique
+
+> Routage IPv4 : routes statiques et protocoles dynamiques (OSPF, EIGRP, BGP), redistribution, HSRP et tunnels GRE.
 
 ### 2.1 Routage Statique (IPv4)
 
@@ -456,7 +449,7 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
     ```ini
     R1(config)# router ospf <process-id>
     ```
-    * **Explication** Active le processus OSPF et spécifie l'ID de processus OSPF
+    * **Explication :** Active le processus OSPF et spécifie l'ID de processus OSPF.
 
 #### 2.2.2 Configuration du Router-ID
 
@@ -488,7 +481,7 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
     ```ini
     R1(config-router)# passive-interface GigabitEthernet0/0
     ```
-    * **Explication**: Désactive l'envoi de paquets OSPF sur une interface
+    * **Explication :** Désactive l'envoi de paquets OSPF sur une interface.
 
 #### 2.2.6 Authentification MD5 sur une Interface
 
@@ -509,18 +502,11 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
 
 #### 2.2.8 Vérification OSPF
 
-* **Affichage des Voisins OSPF :**
-    ```ini
-    R1# show ip ospf neighbor
-    ```
-* **Affichage de la base de données OSPF :**
-    ```ini
-    R1# show ip ospf database
-    ```
-* **Affichage des interfaces OSPF :**
-    ```ini
-    R1# show ip ospf interface brief
-    ```
+| Commande | Rôle |
+| :--- | :--- |
+| `show ip ospf neighbor` | Affiche les voisins OSPF et l'état de l'adjacence |
+| `show ip ospf database` | Affiche la base de données topologique (LSDB) |
+| `show ip ospf interface brief` | Affiche les interfaces participant à OSPF |
 
 #### 2.2.9 Résumé de Route OSPF
 
@@ -553,7 +539,7 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
     ```ini
     R1(config-router)# network <adresse_réseau> [mask-inversé]
     ```
-    * **Explication**: L'utilisation du masque générique est optionnelle mais recommandée
+    * **Explication :** L'utilisation du masque générique est optionnelle mais recommandée.
 
 #### 2.3.4 Désactivation de la Summarization Automatique
 
@@ -568,22 +554,16 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
     ```ini
     R1(config-router)# passive-interface GigabitEthernet0/0
     ```
-    * **Explication**: Empêche l'envoi de mises à jour EIGRP sur une interface.
+    * **Explication :** Empêche l'envoi de mises à jour EIGRP sur une interface.
 
 #### 2.3.6 Vérification EIGRP
 
-* **Vérification des Voisins EIGRP :**
-    ```ini
-    R1# show ip eigrp neighbors
-    ```
-* **Vérification de la Table de Topologie EIGRP :**
-    ```ini
-    R1# show ip eigrp topology
-    ```
-* **Vérification de la Table de Routage EIGRP :**
-    ```ini
-    R1# show ip route eigrp
-    ```
+| Commande | Rôle |
+| :--- | :--- |
+| `show ip eigrp neighbors` | Affiche les voisins EIGRP |
+| `show ip eigrp topology` | Affiche la table de topologie |
+| `show ip route eigrp` | Affiche les routes EIGRP dans la table de routage |
+
 #### 2.3.7 Résumé de Route EIGRP
 
 * **Commande :**
@@ -664,14 +644,11 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
     ```
 
 * **Vérification :**
-    Affiche l'état des groupes HSRP :
-    ```ini
-    Router# show standby
-    ```
-    Affiche l'état résumé des groupes HSRP :
-    ```ini
-    Router# show standby brief
-    ```
+
+| Commande | Rôle |
+| :--- | :--- |
+| `show standby` | Affiche l'état détaillé des groupes HSRP |
+| `show standby brief` | Affiche l'état résumé des groupes HSRP |
 
 ### 2.7 Tunnel GRE
 
@@ -696,9 +673,13 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
     Router# show interfaces tunnel {numéro}
     ```
 
+[⬆️ Retour au sommaire](#table-des-matières)
+
 ---
 
 ## 3. VLAN et Commutation L2
+
+> Segmentation de niveau 2 : VLANs, ports access/trunk, routage inter-VLAN, DTP et VTP.
 
 ### 3.1 Création de VLANs
 
@@ -783,14 +764,10 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
 
 ### 3.6 Vérification VLAN
 
-* **Résumé des VLANs et de leurs ports associés**
-    ```ini
-    S1# show vlan brief
-    ```
-* **Informations détaillées sur les VLANs**
-    ```ini
-    S1# show vlan
-    ```
+| Commande | Rôle |
+| :--- | :--- |
+| `show vlan brief` | Résumé des VLANs et de leurs ports associés |
+| `show vlan` | Informations détaillées sur les VLANs |
 
 ### 3.7 DTP (Dynamic Trunking Protocol)
 
@@ -829,9 +806,13 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
     S1# show vtp status
     ```
 
+[⬆️ Retour au sommaire](#table-des-matières)
+
 ---
 
 ## 4. Spanning Tree Protocol (STP)
+
+> Prévention des boucles de niveau 2 : modes STP, élection de la racine, timers, sécurisation des ports et MST.
 
 ### 4.1 Configuration du mode STP
 
@@ -891,22 +872,25 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
 
 ### 4.6 Vérification STP
 
-* **Commandes :**
-    ```ini
-    Switch# show spanning-tree
-    Switch# show spanning-tree vlan <vlan-id>
-    Switch# show spanning-tree mst
-    Switch# show spanning-tree summary
-    Switch# show spanning-tree detail
-    Switch# show spanning-tree root
-    Switch# show spanning-tree mst configuration
-    ```
-    * Vérifie toute la topologie STP, état des ponts racines, config MST répliquée sur tous les switches.
-    * ⚠️ **Packet Tracer :** `show spanning-tree root` et les commandes MST (`show spanning-tree mst`, `show spanning-tree mst configuration`) peuvent être absentes selon le modèle. `show spanning-tree [vlan|summary|detail]` sont fiables.
+| Commande | Rôle |
+| :--- | :--- |
+| `show spanning-tree` | Vue d'ensemble de la topologie STP |
+| `show spanning-tree vlan <vlan-id>` | État STP pour un VLAN précis |
+| `show spanning-tree mst` | État des instances MST |
+| `show spanning-tree summary` | Résumé (mode, ports, protections actives) |
+| `show spanning-tree detail` | Détails complets de la topologie |
+| `show spanning-tree root` | Informations sur le pont racine |
+| `show spanning-tree mst configuration` | Configuration de la région MST |
+
+* ⚠️ **Packet Tracer :** `show spanning-tree root` et les commandes MST (`show spanning-tree mst`, `show spanning-tree mst configuration`) peuvent être absentes selon le modèle. `show spanning-tree [vlan|summary|detail]` sont fiables.
+
+[⬆️ Retour au sommaire](#table-des-matières)
 
 ---
 
 ## 5. EtherChannel
+
+> Agrégation de liens physiques en un lien logique pour la bande passante et la redondance (LACP, PAgP, statique).
 
 ### 5.1 LACP EtherChannel
 
@@ -957,18 +941,20 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
 
 ### 5.5 Vérification EtherChannel
 
-* **Commandes :**
-    ```ini
-    Switch# show etherchannel summary
-    Switch# show etherchannel <num> detail
-    Switch# show lacp neighbor
-    Switch# show pagp neighbor
-    ```
-    * Affiche résumé des groupes, interfaces membres et état de la négociation.
+| Commande | Rôle |
+| :--- | :--- |
+| `show etherchannel summary` | Résumé des groupes et état des membres |
+| `show etherchannel <num> detail` | Détails d'un groupe précis |
+| `show lacp neighbor` | Voisins LACP et état de la négociation |
+| `show pagp neighbor` | Voisins PAgP et état de la négociation |
+
+[⬆️ Retour au sommaire](#table-des-matières)
 
 ---
 
 ## 6. NAT/PAT
+
+> Traduction d'adresses : NAT statique et dynamique, PAT (overload) et redirection de ports.
 
 ### 6.1 NAT statique
 
@@ -1013,17 +999,20 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
 
 ### 6.6 Vérification NAT/PAT
 
-* **Commandes :**
-    ```ini
-    Router# show ip nat translations
-    Router# show ip nat statistics
-    Router# clear ip nat translation *
-    Router# debug ip nat
-    ```
+| Commande | Rôle |
+| :--- | :--- |
+| `show ip nat translations` | Affiche les traductions NAT actives |
+| `show ip nat statistics` | Affiche les statistiques NAT |
+| `clear ip nat translation *` | Vide la table des traductions |
+| `debug ip nat` | Trace en temps réel les traductions |
+
+[⬆️ Retour au sommaire](#table-des-matières)
 
 ---
 
 ## 7. Access Control Lists (ACL)
+
+> Filtrage du trafic et restriction d'accès via des listes de contrôle (standard, étendue, nommée).
 
 ### 7.1 ACL standard
 
@@ -1083,18 +1072,20 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
 
 ### 7.7 Vérification ACL
 
-* **Commandes :**
-    ```ini
-    Router# show access-lists
-    Router# show ip access-lists
-    Router# show ip access-lists <nom_ou_num_acl>
-    Router# show ip interface <interface>
-    ```
-    * Affiche les ACL configurées et leur application sur les interfaces.
+| Commande | Rôle |
+| :--- | :--- |
+| `show access-lists` | Affiche toutes les ACL (IP et autres) |
+| `show ip access-lists` | Affiche les ACL IP uniquement |
+| `show ip access-lists <nom_ou_num_acl>` | Affiche une ACL précise |
+| `show ip interface <interface>` | Affiche les ACL appliquées sur une interface |
+
+[⬆️ Retour au sommaire](#table-des-matières)
 
 ---
 
 ## 8. IPv6 (Routage et Autoconfiguration)
+
+> Adressage et routage IPv6 : adresses, routes statiques, OSPFv3/EIGRPv6/BGP, SLAAC et DHCPv6.
 
 ### 8.1 Activation IPv6
 
@@ -1190,18 +1181,21 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
 
 ### 8.10 Vérification IPv6
 
-* **Commandes :**
-    ```ini
-    Router# show ipv6 interface
-    Router# show ipv6 neighbors
-    Router# show ipv6 dhcp binding
-    Router# show ipv6 route
-    Router# show ipv6 protocols
-    ```
+| Commande | Rôle |
+| :--- | :--- |
+| `show ipv6 interface` | État et adresses IPv6 des interfaces |
+| `show ipv6 neighbors` | Table de voisinage (NDP) |
+| `show ipv6 dhcp binding` | Baux DHCPv6 attribués |
+| `show ipv6 route` | Table de routage IPv6 |
+| `show ipv6 protocols` | Protocoles de routage IPv6 actifs |
+
+[⬆️ Retour au sommaire](#table-des-matières)
 
 ---
 
 ## 9. Services Réseau
+
+> Services d'infrastructure : NTP, SNMP, DHCP, CDP/LLDP, Syslog et gestion de l'heure.
 
 ### 9.1 Protocole NTP
 
@@ -1286,13 +1280,13 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
 
 #### 9.3.4 Vérification SNMP
 
-* **Commandes :**
-    ```ini
-    Router# show snmp community
-    Router# show snmp host
-    Router# show snmp traps
-    ```
-    * ⚠️ **Packet Tracer :** ces sous-commandes (`show snmp community/host/traps`) ne sont pas toutes disponibles ; `show snmp` (sans argument) est le plus largement supporté.
+| Commande | Rôle |
+| :--- | :--- |
+| `show snmp community` | Communautés SNMP configurées |
+| `show snmp host` | Hôtes (NMS) destinataires des traps/informs |
+| `show snmp traps` | Traps disponibles |
+
+* ⚠️ **Packet Tracer :** ces sous-commandes (`show snmp community/host/traps`) ne sont pas toutes disponibles ; `show snmp` (sans argument) est le plus largement supporté.
 
 ### 9.4 DHCP (IPv4)
 
@@ -1348,12 +1342,11 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
 
 #### 9.6.2 Vérification
 
-* **Commandes :**
-    ```ini
-    Router# show cdp neighbors
-    Router# show cdp neighbors detail
-    Router# show lldp neighbors
-    ```
+| Commande | Rôle |
+| :--- | :--- |
+| `show cdp neighbors` | Voisins CDP (résumé) |
+| `show cdp neighbors detail` | Voisins CDP (détaillé, avec IP et version IOS) |
+| `show lldp neighbors` | Voisins LLDP |
 
 ### 9.7 SYSLOG
 
@@ -1372,14 +1365,14 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
     ```ini
     Router# clock set HH:MM:SS <jour> <Mois> <année>
     ```
-    
+
 ### 9.9 Fuseau Horaire
 
 * **Définir le fuseau horaire :**
     ```ini
     Router(config)# clock timezone nom_fuseau_horaire décalage_utc
     ```
-    
+
 * **Afficher les détails de l'horloge :**
     ```ini
     Router# show clock detail
@@ -1392,9 +1385,13 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
     Router(config)# no ip domain-lookup
     ```
 
+[⬆️ Retour au sommaire](#table-des-matières)
+
 ---
 
 ## 10. Maintenance du Réseau
+
+> Opérations de maintenance courantes sur les équipements.
 
 ### 10.1 Effacer la configuration du switch
 
@@ -1404,3 +1401,5 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
     S1# delete vlan.dat
     S1# reload
     ```
+
+[⬆️ Retour au sommaire](#table-des-matières)
