@@ -9,6 +9,34 @@ English version coming soon... ✍️
 
 > **Note importante :** Ce guide se concentre *uniquement* sur les commandes et les technologies supportées par **Packet Tracer**. Les sujets avancés de l'examen ENCOR (Wireless, SD-WAN, automatisation, etc.) ne sont pas inclus.
 
+## 📖 Comment utiliser ce guide
+
+Chaque commande est précédée de l'**invite** qui indique le mode dans lequel la taper. Remplace les valeurs entre chevrons par tes propres paramètres. Les blocs marqués ⚠️ signalent une particularité de **Packet Tracer** (commande non supportée, dépendante du modèle, etc.).
+
+### Conventions de notation
+
+| Notation | Signification | Exemple |
+| :--- | :--- | :--- |
+| `<valeur>` | Paramètre **à remplacer** par ta propre valeur | `<process-id>` → `1` |
+| `{a \| b}` | Choix **obligatoire** entre les options proposées | `{permit \| deny}` |
+| `[option]` | Élément **optionnel** | `[eq <port>]` |
+| ⚠️ **Packet Tracer** | Avertissement de support / compatibilité propre à PT | — |
+
+### Invites et modes CLI
+
+| Invite | Mode |
+| :--- | :--- |
+| `Router>` | EXEC utilisateur (lecture seule) |
+| `Router#` | EXEC privilégié (`enable`) |
+| `Router(config)#` | Configuration globale |
+| `Router(config-if)#` | Configuration d'une interface |
+| `Router(config-router)#` | Configuration d'un protocole de routage |
+| `Router(config-line)#` | Configuration d'une ligne (console / VTY) |
+
+> 💡 Les noms d'équipement dans les invites (`R1`, `S1`, `Switch`, `Router`…) ne sont que des exemples : seul ce qui suit `>` ou `#` est à saisir.
+
+---
+
 ## Table des Matières
 
 0.  [Configuration Initiale et Vérifications](#0-configuration-initiale-et-vérifications)
