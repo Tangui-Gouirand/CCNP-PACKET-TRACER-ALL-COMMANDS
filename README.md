@@ -433,9 +433,9 @@ English version coming soon... ✍️
 
 * **Commande :**
     ```ini
-    R1(config-router)# ospf router-id <id ex:1.1.1.1>
+    R1(config-router)# router-id <id ex:1.1.1.1>
     ```
-    * **Note :** Sur Packet Tracer, `router-id <id>` est parfois la commande correcte.
+    * **Note :** En mode `config-router`, la commande est bien `router-id` (et non `ospf router-id`).
 
 #### 2.2.3 Configuration des Interfaces OSPF
 
@@ -856,6 +856,7 @@ English version coming soon... ✍️
     Switch(config)# spanning-tree mst <instance> priority <0-61440>
     ```
     * Permet d’associer des VLANs à différentes instances MST.
+    * ⚠️ **Packet Tracer :** le support de MST est **partiel et dépend du modèle de switch**. Certaines commandes (`show pending`, `show spanning-tree root`, `show spanning-tree mst`) peuvent être absentes. PVST et Rapid-PVST sont, eux, pleinement supportés.
 
 ### 4.6 Vérification STP
 
@@ -1125,6 +1126,7 @@ English version coming soon... ✍️
     Router(config-router-af)# exit-address-family
     ```
     * Configuration BGP pour IPv6 (MP-BGP).
+    * ⚠️ **Packet Tracer :** le support des *address-families* MP-BGP (`address-family ipv6 unicast`, `neighbor … activate`, `exit-address-family`) est **généralement absent** de Packet Tracer, dont le BGP se limite le plus souvent à l'IPv4 de base. À tester sur ta version.
 
 ### 8.7 SLAAC
 
@@ -1245,8 +1247,9 @@ English version coming soon... ✍️
 
 * **Commande :**
     ```ini
-    Router(config)# snmp-server user nom group-name auth {md5|sha} mot_de_passe priv {des|aes} mot_de_passe
+    Router(config)# snmp-server user nom group-name v3 auth {md5|sha} mot_de_passe priv {des|aes {128|192|256}} mot_de_passe
     ```
+* ⚠️ **Packet Tracer / syntaxe :** le support SNMPv3 est **limité** dans Packet Tracer. Sur IOS, le mot-clé `v3` est obligatoire et `aes` exige une taille de clé (`128`, `192` ou `256`). Le groupe doit être défini au préalable via `snmp-server group`.
 
 #### 9.3.4 Vérification SNMP
 
