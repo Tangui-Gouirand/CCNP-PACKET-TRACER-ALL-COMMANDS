@@ -256,12 +256,13 @@ English version coming soon... ✍️
     ```
     Définit la méthode d'authentification par défaut pour les connexions :
     ```ini
-    Router(config)# aaa authentication login default group {tacacs+|radius|local}
+    Router(config)# aaa authentication login default group {tacacs+|radius} local
     ```
     Définit la méthode d'autorisation par défaut pour les commandes EXEC :
     ```ini
-    Router(config)# aaa authorization exec default group {tacacs+|radius|local}
+    Router(config)# aaa authorization exec default group {tacacs+|radius} local
     ```
+    * **Note :** `local` est une méthode à part entière (base locale) et ne se place **pas** derrière `group` (`group local` est invalide). Ici elle sert de méthode de secours si le serveur AAA est injoignable.
     Active la comptabilité pour les commandes EXEC :
     ```ini
     Router(config)# aaa accounting exec default start-stop group {tacacs+|radius}
@@ -593,6 +594,7 @@ English version coming soon... ✍️
     ```ini
     R1(config-router)# default-information originate
     ```
+    * ⚠️ **Packet Tracer :** commande à tester selon ta version ; elle requiert par ailleurs qu'une route par défaut existe (via `network 0.0.0.0` ou redistribution) pour être réellement annoncée.
 
 ### 2.5 Redistribution
 
@@ -715,6 +717,7 @@ English version coming soon... ✍️
     S1(config-if)# switchport trunk encapsulation dot1q
     ```
 * **Explication :** Sur les switches modernes, c'est souvent le seul protocole supporté et activé par défaut.
+* ⚠️ **Packet Tracer :** cette commande est **rejetée sur un switch 2960** (qui ne gère que 802.1Q) ; elle n'est disponible que sur les switches multicouches (3560/3650).
 
 #### 3.4.2 VLAN natif
 
@@ -871,6 +874,7 @@ English version coming soon... ✍️
     Switch# show spanning-tree mst configuration
     ```
     * Vérifie toute la topologie STP, état des ponts racines, config MST répliquée sur tous les switches.
+    * ⚠️ **Packet Tracer :** `show spanning-tree root` et les commandes MST (`show spanning-tree mst`, `show spanning-tree mst configuration`) peuvent être absentes selon le modèle. `show spanning-tree [vlan|summary|detail]` sont fiables.
 
 ---
 
@@ -1186,6 +1190,7 @@ English version coming soon... ✍️
     ```ini
     Router(config)# ntp peer adresse_ip_pair
     ```
+    * ⚠️ **Packet Tracer :** `ntp peer` n'est pas toujours pris en charge ; `ntp server` et `ntp master` sont les plus fiables.
 
 #### 9.1.3 Serveur principal NTP
 
@@ -1259,6 +1264,7 @@ English version coming soon... ✍️
     Router# show snmp host
     Router# show snmp traps
     ```
+    * ⚠️ **Packet Tracer :** ces sous-commandes (`show snmp community/host/traps`) ne sont pas toutes disponibles ; `show snmp` (sans argument) est le plus largement supporté.
 
 ### 9.4 DHCP (IPv4)
 
