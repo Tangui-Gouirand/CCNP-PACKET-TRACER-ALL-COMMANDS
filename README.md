@@ -93,6 +93,7 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
         * 2.5.2. [OSPF vers EIGRP](#252-ospf-vers-eigrp)
     * 2.6. [HSRP](#26-hsrp)
     * 2.7. [Tunnel GRE](#27-tunnel-gre)
+    * 2.8. [VPN IPsec Site-to-Site](#28-vpn-ipsec-site-to-site)
 
 3.  [VLAN et Commutation L2](#3-vlan-et-commutation-l2)
     * 3.1. [Création de VLANs](#31-création-de-vlans)
@@ -672,6 +673,64 @@ Chaque commande est précédée de l'**invite** qui indique le mode dans lequel 
     ```ini
     Router# show interfaces tunnel {numéro}
     ```
+
+### 2.8 VPN IPsec Site-to-Site
+
+Tunnel chiffré entre deux routeurs, négocié en deux phases IKE : Phase 1 (ISAKMP, établit un canal sécurisé) puis Phase 2 (IPsec, chiffre les données).
+
+* **Phase 1 — Politique ISAKMP (IKE) :**
+    ```ini
+    R1(config)# crypto isakmp policy 10
+    R1(config-isakmp)# encryption aes 256
+    R1(config-isakmp)# hash sha
+    R1(config-isakmp)# authentication pre-share
+    R1(config-isakmp)# group 5
+    R1(config-isakmp)# lifetime 3600
+    ```
+
+* **Clé pré-partagée (identique des deux côtés) :**
+    ```ini
+    R1(config)# crypto isakmp key <clé> address <ip_peer>
+    ```
+
+* **Phase 2 — Transform set IPsec :**
+    ```ini
+    R1(config)# crypto ipsec transform-set <nom_ts> esp-aes 256 esp-sha-hmac
+    ```
+
+* **ACL du trafic intéressant (à chiffrer) :**
+    ```ini
+    R1(config)# access-list 100 permit ip <réseau_local> <wildcard> <réseau_distant> <wildcard>
+    ```
+
+* **Crypto map (lie peer + transform-set + ACL) :**
+    ```ini
+    R1(config)# crypto map <nom_map> 10 ipsec-isakmp
+    R1(config-crypto-map)# set peer <ip_peer>
+    R1(config-crypto-map)# set transform-set <nom_ts>
+    R1(config-crypto-map)# match address 100
+    ```
+
+* **Application sur l'interface de sortie (WAN) :**
+    ```ini
+    R1(config)# interface <interface_externe>
+    R1(config-if)# crypto map <nom_map>
+    ```
+
+* **Explications :**
+    * Les paramètres de Phase 1 (`encryption`, `hash`, `group`, `lifetime`) et la clé pré-partagée doivent être **identiques** sur les deux routeurs.
+    * L'ACL de trafic intéressant du routeur distant est le **miroir** de celle-ci (source et destination inversées).
+    * Le tunnel ne s'établit qu'au passage de trafic correspondant à l'ACL.
+
+* **Vérification :**
+
+| Commande | Rôle |
+| :--- | :--- |
+| `show crypto isakmp sa` | État des associations de sécurité Phase 1 (IKE) |
+| `show crypto ipsec sa` | Associations Phase 2 + compteurs de paquets chiffrés/déchiffrés |
+| `show crypto map` | Crypto maps configurées et leur application sur les interfaces |
+
+* ⚠️ **Packet Tracer :** nécessite un routeur gérant le chiffrement (ex. **ISR 2911**) avec le *technology-package* **`securityk9`** activé (`license boot module c2900 technology-package securityk9` puis `reload`). Les routeurs de base (1841/2620…) ne supportent pas IPsec.
 
 [⬆️ Retour au sommaire](#table-des-matières)
 
